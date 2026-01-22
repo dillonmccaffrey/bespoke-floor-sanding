@@ -148,8 +148,8 @@
         "Business hours if provided"
       ],
       "priority": 8,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Footer with contact, links, areas"
     },
     {
       "id": "US-009",
