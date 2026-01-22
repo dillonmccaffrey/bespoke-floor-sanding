@@ -132,8 +132,8 @@
         "Areas stored in config file for easy updates"
       ],
       "priority": 7,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Service areas list with map placeholder"
     },
     {
       "id": "US-008",
