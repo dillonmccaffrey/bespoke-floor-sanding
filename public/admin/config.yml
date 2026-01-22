@@ -2,16 +2,49 @@ backend:
   name: git-gateway
   branch: main
 
-# For local development: npx decap-server
 local_backend: true
-
-# For simple test mode (no git, changes are local only):
-# name: test-repo
 
 media_folder: "public/images"
 public_folder: "/images"
 
 collections:
+  # Site Settings
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "general"
+        label: "General Settings"
+        file: "src/content/settings/general.json"
+        fields:
+          - { label: "Business Name", name: "businessName", widget: "string", default: "Bespoke Floor Sanding Co." }
+          - { label: "Logo", name: "logo", widget: "image", required: false }
+          - { label: "Phone", name: "phone", widget: "string", default: "+353 87 402 7101" }
+          - { label: "Email", name: "email", widget: "string", default: "info@bespokefloorsanding.ie" }
+          - { label: "Tagline", name: "tagline", widget: "string", default: "Premium Floor Sanding by Trusted Experts" }
+          
+      - name: "hero"
+        label: "Homepage Hero"
+        file: "src/content/settings/hero.json"
+        fields:
+          - { label: "Badge Text", name: "badge", widget: "string", default: "Trusted Experts Since 2010" }
+          - { label: "Headline Line 1", name: "headline1", widget: "string", default: "Premium Floor Sanding" }
+          - { label: "Headline Line 2", name: "headline2", widget: "string", default: "By Trusted Experts" }
+          - { label: "Subheadline", name: "subheadline", widget: "text", default: "With unmatched quality, precision, and care, we restore the beauty of your wooden floors to perfection." }
+          - { label: "Primary Button Text", name: "ctaPrimary", widget: "string", default: "Call for Free Quote" }
+          - { label: "Secondary Button Text", name: "ctaSecondary", widget: "string", default: "Email Us" }
+          - { label: "Trust Point 1", name: "trust1", widget: "string", default: "Free Quotes" }
+          - { label: "Trust Point 2", name: "trust2", widget: "string", default: "Dust-Free Sanding" }
+          - { label: "Trust Point 3", name: "trust3", widget: "string", default: "Fully Insured" }
+          
+      - name: "contact"
+        label: "Contact Page"
+        file: "src/content/settings/contact.json"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string", default: "Get In Touch" }
+          - { label: "Page Description", name: "description", widget: "text", default: "Ready to transform your floors? Contact us for a free, no-obligation quote." }
+          - { label: "Service Areas", name: "serviceAreas", widget: "list", field: { label: "Area", name: "area", widget: "string" } }
+
+  # Testimonials
   - name: "testimonials"
     label: "Testimonials"
     folder: "src/content/testimonials"
@@ -25,6 +58,7 @@ collections:
       - { label: "Rating (1-5)", name: "rating", widget: "number", min: 1, max: 5, default: 5 }
       - { label: "Order", name: "order", widget: "number", default: 1 }
 
+  # Gallery
   - name: "gallery"
     label: "Gallery (Before/After)"
     folder: "src/content/gallery"
@@ -39,6 +73,7 @@ collections:
       - { label: "After Image", name: "afterImage", widget: "image" }
       - { label: "Order", name: "order", widget: "number", default: 1 }
 
+  # Services
   - name: "services"
     label: "Services"
     folder: "src/content/services"
@@ -47,19 +82,8 @@ collections:
     extension: "md"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Short Description", name: "description", widget: "text" }
+      - { label: "Full Description", name: "fullDescription", widget: "text", required: false }
       - { label: "Icon", name: "icon", widget: "select", options: ["sanding", "restoration", "finish", "commercial"] }
+      - { label: "Features", name: "features", widget: "list", field: { label: "Feature", name: "feature", widget: "string" } }
       - { label: "Order", name: "order", widget: "number", default: 1 }
-      - { label: "Body", name: "body", widget: "markdown" }
-
-  - name: "settings"
-    label: "Site Settings"
-    files:
-      - name: "contact"
-        label: "Contact Information"
-        file: "src/content/settings/contact.json"
-        fields:
-          - { label: "Business Name", name: "businessName", widget: "string" }
-          - { label: "Phone", name: "phone", widget: "string" }
-          - { label: "Email", name: "email", widget: "string" }
-          - { label: "Service Areas", name: "serviceAreas", widget: "list", field: { label: "Area", name: "area", widget: "string" } }
