@@ -229,8 +229,8 @@
         "Validates in Google Rich Results Test"
       ],
       "priority": 13,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "LocalBusiness schema with reviews"
     },
     {
       "id": "US-014",
