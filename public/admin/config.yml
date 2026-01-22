@@ -2,7 +2,11 @@ backend:
   name: git-gateway
   branch: main
 
+# For local development: npx decap-server
 local_backend: true
+
+# For simple test mode (no git, changes are local only):
+# name: test-repo
 
 media_folder: "public/images"
 public_folder: "/images"

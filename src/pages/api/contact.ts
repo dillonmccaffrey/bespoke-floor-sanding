@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
 export const prerender = false;
 
@@ -15,23 +15,50 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const resendApiKey = import.meta.env.RESEND_API_KEY;
+    // SMTP configuration from environment variables
+    const smtpHost = import.meta.env.SMTP_HOST;
+    const smtpPort = parseInt(import.meta.env.SMTP_PORT || '587');
+    const smtpUser = import.meta.env.SMTP_USER;
+    const smtpPass = import.meta.env.SMTP_PASS;
+    const smtpFrom = import.meta.env.SMTP_FROM || 'noreply@bespokefloorsanding.ie';
+    const contactEmail = import.meta.env.CONTACT_EMAIL || 'info@bespokefloorsanding.ie';
 
-    if (!resendApiKey) {
-      console.error('RESEND_API_KEY not configured');
+    if (!smtpHost) {
+      console.error('SMTP not configured');
       return new Response(
         JSON.stringify({ error: 'Email service not configured' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
-    const resend = new Resend(resendApiKey);
+    // Create transporter
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpPort === 465,
+      auth: smtpUser ? {
+        user: smtpUser,
+        pass: smtpPass,
+      } : undefined,
+    });
 
-    const { error } = await resend.emails.send({
-      from: 'Bespoke Floor Sanding <onboarding@resend.dev>',
-      to: 'info@bespokefloorsanding.ie',
+    // Send email
+    await transporter.sendMail({
+      from: `"Bespoke Floor Sanding Website" <${smtpFrom}>`,
+      to: contactEmail,
       replyTo: email,
       subject: `New Quote Request from ${name}`,
+      text: `
+New Contact Form Submission
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+Location: ${location || 'Not specified'}
+
+Message:
+${message}
+      `,
       html: `
         <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${name}</p>
@@ -43,14 +70,6 @@ export const POST: APIRoute = async ({ request }) => {
       `,
     });
 
-    if (error) {
-      console.error('Resend error:', error);
-      return new Response(
-        JSON.stringify({ error: 'Failed to send email' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
-
     return new Response(
       JSON.stringify({ success: true, message: 'Email sent successfully' }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
@@ -58,7 +77,7 @@ export const POST: APIRoute = async ({ request }) => {
   } catch (error) {
     console.error('Contact form error:', error);
     return new Response(
-      JSON.stringify({ error: 'Internal server error' }),
+      JSON.stringify({ error: 'Failed to send email' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
