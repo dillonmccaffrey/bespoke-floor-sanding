@@ -55,8 +55,8 @@
         "Gold accent on CTA button"
       ],
       "priority": 2,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Header with sticky CTA, mobile hamburger menu"
     },
     {
       "id": "US-003",

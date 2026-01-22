@@ -9,6 +9,22 @@ Project: Bespoke Floor Sanding Website
 
 ---
 
+## 2026-01-22 16:59 - US-002
+- **Implemented**: Responsive header with sticky CTA
+- **Files created/modified**:
+  - src/components/Header.astro (new - navigation + mobile menu)
+  - src/layouts/Layout.astro (added Header, wrapped slot in main)
+  - src/pages/index.astro (adjusted height for header)
+- **Features**:
+  - Fixed header with backdrop blur
+  - Logo links to home
+  - Desktop nav: Home, Services, Gallery, Contact
+  - Sticky gold "Call Now" button with phone icon
+  - Mobile hamburger menu with slide-down nav
+  - Click-to-call on all phone links
+
+---
+
 ## 2026-01-22 16:41 - US-001
 - **Implemented**: Astro project with Tailwind CSS and color scheme
 - **Files created**:
