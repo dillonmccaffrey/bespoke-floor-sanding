@@ -290,8 +290,8 @@
         "Documentation for self-hosting Umami"
       ],
       "priority": 17,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Umami script loads from env vars"
     },
     {
       "id": "US-018",
@@ -306,8 +306,8 @@
         "Events named clearly: 'cta-call', 'cta-email', 'form-submit', 'gallery-view'"
       ],
       "priority": 18,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Tracks cta-call, cta-email, form-submit, gallery-view"
     },
     {
       "id": "US-019",
