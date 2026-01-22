@@ -384,8 +384,8 @@
         "Screenshots where helpful"
       ],
       "priority": 23,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "OWNER-GUIDE.md created"
     },
     {
       "id": "US-024",
@@ -400,8 +400,8 @@
         "Analytics setup explained"
       ],
       "priority": 24,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "docs/DEVELOPER.md created"
     }
   ]
 }
