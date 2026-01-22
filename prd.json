@@ -117,8 +117,8 @@
         "CTA: 'Join our happy customers - Call Now'"
       ],
       "priority": 6,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "3 testimonials with star ratings"
     },
     {
       "id": "US-007",
