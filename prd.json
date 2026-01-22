@@ -322,8 +322,8 @@
         "Gold/accent color to match brand"
       ],
       "priority": 19,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Floating call button on mobile"
     },
     {
       "id": "US-020",
