@@ -260,8 +260,8 @@
         "README with instructions for business owner"
       ],
       "priority": 15,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Decap CMS at /admin"
     },
     {
       "id": "US-016",
@@ -275,8 +275,8 @@
         "Image upload configured to /public/images/"
       ],
       "priority": 16,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Collections: testimonials, gallery, services, settings"
     },
     {
       "id": "US-017",
