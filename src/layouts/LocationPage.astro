@@ -1,0 +1,125 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  location: string;
+  description?: string;
+}
+
+const { location, description } = Astro.props;
+
+const phone = '+353 87 402 7101';
+const phoneHref = 'tel:+353874027101';
+
+const defaultDescription = `Professional floor sanding services in ${location}. Bespoke Floor Sanding Co. provides expert hardwood floor restoration, refinishing, and sanding. Call +353 87 402 7101 for a free quote.`;
+
+const services = [
+  'Floor Sanding',
+  'Floor Restoration',
+  'Refinishing',
+  'Commercial Services',
+];
+---
+
+<Layout title={`Floor Sanding in ${location}`} description={description || defaultDescription}>
+  <!-- Hero -->
+  <section class="py-20 bg-gradient-to-b from-background to-background-light">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-1.5 mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+        </svg>
+        <span class="text-sm text-primary">{location}</span>
+      </div>
+      
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-text mb-6">
+        Floor Sanding in <span class="text-primary">{location}</span>
+      </h1>
+      
+      <p class="text-lg text-text-muted max-w-2xl mx-auto mb-8">
+        Professional floor sanding and restoration services for homes and businesses in {location}. 
+        We restore the natural beauty of your wooden floors with precision and care.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href={phoneHref}
+          class="inline-flex items-center gap-2 bg-cta hover:bg-cta-hover text-background font-semibold px-8 py-4 rounded-lg text-lg transition-all hover:scale-105"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+          </svg>
+          <span>Call for Free Quote</span>
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-background font-semibold px-8 py-4 rounded-lg transition-all"
+        >
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Services -->
+  <section class="py-16 bg-background">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-text mb-8 text-center">
+        Our Services in {location}
+      </h2>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+        {services.map((service) => (
+          <div class="flex items-start gap-4 bg-background-light p-6 rounded-xl border border-background-lighter">
+            <div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-text mb-1">{service}</h3>
+              <p class="text-text-muted text-sm">Available throughout {location} and surrounding areas.</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA -->
+  <section class="py-16 bg-background-light">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-text mb-4">
+        Ready to Transform Your Floors in {location}?
+      </h2>
+      <p class="text-text-muted mb-8">
+        Contact us today for a free, no-obligation quote. We're happy to discuss your project.
+      </p>
+      <a
+        href={phoneHref}
+        class="inline-flex items-center gap-2 bg-cta hover:bg-cta-hover text-background font-semibold px-8 py-4 rounded-lg text-lg transition-all hover:scale-105"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+        </svg>
+        <span>Call: {phone}</span>
+      </a>
+    </div>
+  </section>
+  
+  <!-- Schema.org LocalBusiness JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Bespoke Floor Sanding Co.",
+    "description": `Professional floor sanding services in ${location}`,
+    "telephone": "+353874027101",
+    "email": "info@bespokefloorsanding.ie",
+    "areaServed": {
+      "@type": "Place",
+      "name": location
+    },
+    "priceRange": "$$",
+    "serviceType": ["Floor Sanding", "Floor Restoration", "Wood Floor Refinishing"]
+  })} />
+</Layout>

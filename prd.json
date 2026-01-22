@@ -197,8 +197,8 @@
         "Strong CTA to call"
       ],
       "priority": 11,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "LocationPage layout with schema.org"
     },
     {
       "id": "US-012",
