@@ -337,8 +337,8 @@
         "No layout shift issues"
       ],
       "priority": 20,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Astro handles image optimization, CSS purging"
     },
     {
       "id": "US-021",
@@ -352,8 +352,8 @@
         "Internal links to contact page"
       ],
       "priority": 21,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Dedicated services page"
     },
     {
       "id": "US-022",
@@ -367,8 +367,8 @@
         "Default OG image created/configured"
       ],
       "priority": 22,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "OG, Twitter, canonical tags"
     },
     {
       "id": "US-023",

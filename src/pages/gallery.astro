@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Gallery from '../components/Gallery.astro';
+---
+
+<Layout title="Gallery" description="View before and after photos of our floor sanding projects. Bespoke Floor Sanding Co. transforms wooden floors across Dublin, Monaghan, Cavan, and Midlands Ireland.">
+  <!-- Hero -->
+  <section class="py-16 bg-gradient-to-b from-background to-background-light">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold text-text mb-6">Our Work</h1>
+      <p class="text-lg text-text-muted max-w-2xl mx-auto">
+        See the transformations we've achieved for clients across Ireland.
+      </p>
+    </div>
+  </section>
+  
+  <Gallery />
+</Layout>

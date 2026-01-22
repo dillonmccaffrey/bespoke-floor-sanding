@@ -26,6 +26,21 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} | Bespoke Floor Sanding Co.</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${title} | Bespoke Floor Sanding Co.`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:site_name" content="Bespoke Floor Sanding Co." />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | Bespoke Floor Sanding Co.`} />
+    <meta name="twitter:description" content={description} />
+    
+    <!-- Canonical -->
+    <link rel="canonical" href={Astro.url.href} />
     <SchemaOrg />
     <Analytics />
   </head>
