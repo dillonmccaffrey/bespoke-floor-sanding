@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Bespoke Floor Sanding Color Scheme */
+  /* Bespoke Floor Sanding Color Scheme - Dark Mode (default) */
   --color-primary: #C4A052;
   --color-primary-dark: #A88A3D;
   --color-primary-light: #D4B872;
@@ -18,4 +18,24 @@
   /* Semantic colors */
   --color-cta: #C4A052;
   --color-cta-hover: #D4B872;
+}
+
+/* Light mode overrides */
+html.light {
+  --color-background: #F5F5F5;
+  --color-background-light: #FFFFFF;
+  --color-background-lighter: #E8E8E8;
+  
+  --color-text: #1A1A1A;
+  --color-text-muted: #666666;
+}
+
+/* Smooth theme transition */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Prevent flash of wrong theme */
+html:not(.light):not(.dark) {
+  visibility: hidden;
 }

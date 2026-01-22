@@ -1,6 +1,5 @@
 ---
 const phone = '+353 87 402 7101';
-const phoneHref = 'tel:+353874027101';
 const email = 'info@bespokefloorsanding.ie';
 const emailHref = 'mailto:info@bespokefloorsanding.ie';
 ---
@@ -20,67 +19,68 @@ const emailHref = 'mailto:info@bespokefloorsanding.ie';
     </div>
     
     <!-- Headline -->
-    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
       <span class="text-text">Premium Floor Sanding</span>
       <br />
       <span class="text-primary">By Trusted Experts</span>
     </h1>
     
     <!-- Subheadline -->
-    <p class="text-lg sm:text-xl text-text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
+    <p class="text-base sm:text-lg md:text-xl text-text-muted max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2">
       With unmatched quality, precision, and care, we restore the beauty of your wooden floors to perfection. Serving Dublin, Monaghan, Cavan, and Midlands Ireland.
     </p>
     
     <!-- CTAs -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-      <!-- Primary CTA - Call -->
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-2">
+      <!-- Primary CTA - Call (mobile) / Contact (desktop) -->
       <a
-        href={phoneHref}
-        class="group flex items-center gap-3 bg-cta hover:bg-cta-hover text-background font-semibold px-8 py-4 rounded-lg text-lg transition-all hover:scale-105 shadow-lg shadow-primary/20"
+        href="/contact"
+        class="call-cta group flex items-center justify-center gap-2 sm:gap-3 bg-cta hover:bg-cta-hover text-background font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg transition-all hover:scale-105 shadow-lg shadow-primary/20 w-full sm:w-auto"
+        data-phone="tel:+353874027101"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
           <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
         </svg>
-        <span>Call for Free Quote</span>
+        <span class="whitespace-nowrap">Call for Free Quote</span>
       </a>
       
       <!-- Secondary CTA - Email -->
       <a
         href={emailHref}
-        class="group flex items-center gap-3 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-background font-semibold px-8 py-4 rounded-lg text-lg transition-all"
+        class="group flex items-center justify-center gap-2 sm:gap-3 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-background font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg transition-all w-full sm:w-auto"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
           <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
           <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
         </svg>
-        <span>Email Us</span>
+        <span class="whitespace-nowrap">Email Us</span>
       </a>
     </div>
     
     <!-- Phone number display -->
-    <p class="text-text-muted">
+    <p class="text-text-muted text-sm sm:text-base">
       Or call directly: 
-      <a href={phoneHref} class="text-primary hover:text-primary-light font-semibold transition-colors">
+      <a href="tel:+353874027101" class="text-primary hover:text-primary-light font-semibold transition-colors">
         {phone}
       </a>
     </p>
     
     <!-- Trust indicators -->
-    <div class="flex flex-wrap items-center justify-center gap-8 mt-12 pt-8 border-t border-background-lighter">
-      <div class="flex items-center gap-2 text-text-muted">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
+    <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-background-lighter">
+      <div class="flex items-center gap-2 text-text-muted text-sm sm:text-base">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
         </svg>
         <span>Free Quotes</span>
       </div>
-      <div class="flex items-center gap-2 text-text-muted">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
+      <div class="flex items-center gap-2 text-text-muted text-sm sm:text-base">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
         </svg>
-        <span>Dust-Free Sanding</span>
+        <span>Dust-Free</span>
       </div>
-      <div class="flex items-center gap-2 text-text-muted">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
+      <div class="flex items-center gap-2 text-text-muted text-sm sm:text-base">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
         </svg>
         <span>Fully Insured</span>
@@ -88,3 +88,24 @@ const emailHref = 'mailto:info@bespokefloorsanding.ie';
     </div>
   </div>
 </section>
+
+<script>
+  // Handle call CTAs - mobile calls, desktop goes to contact
+  function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+      || window.innerWidth < 768;
+  }
+
+  document.querySelectorAll('.call-cta').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      if (isMobile()) {
+        e.preventDefault();
+        const phoneNumber = btn.getAttribute('data-phone');
+        if (phoneNumber) {
+          window.location.href = phoneNumber;
+        }
+      }
+      // On desktop, let the default href="/contact" work
+    });
+  });
+</script>

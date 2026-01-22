@@ -18,7 +18,7 @@ const {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,6 +26,17 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} | Bespoke Floor Sanding Co.</title>
+    
+    <!-- Theme initialization (prevents flash) -->
+    <script is:inline>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        const system = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        const theme = stored || system;
+        document.documentElement.classList.remove('light', 'dark');
+        document.documentElement.classList.add(theme);
+      })();
+    </script>
     
     <!-- Open Graph -->
     <meta property="og:title" content={`${title} | Bespoke Floor Sanding Co.`} />
@@ -44,7 +55,7 @@ const {
     <SchemaOrg />
     <Analytics />
   </head>
-  <body class="bg-background text-text min-h-screen antialiased">
+  <body class="bg-background text-text min-h-screen antialiased transition-colors duration-300">
     <Header />
     <main class="pt-16 md:pt-20">
       <slot />

@@ -8,6 +8,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://bespokefloorsanding.ie',
   output: 'static',
+  trailingSlash: 'ignore',
 
   adapter: node({
     mode: 'standalone'
