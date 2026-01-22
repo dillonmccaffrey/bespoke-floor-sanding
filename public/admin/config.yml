@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: dillonmccaffrey/bespoke-floor-sanding
   branch: main
+  base_url: https://bespoke.dillonmccaffrey.dev
+  auth_endpoint: /oauth/auth
 
 local_backend: true
 
