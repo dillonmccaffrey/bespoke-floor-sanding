@@ -1,0 +1,195 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const phone = '+353 87 402 7101';
+const phoneHref = 'tel:+353874027101';
+const email = 'info@bespokefloorsanding.ie';
+const emailHref = 'mailto:info@bespokefloorsanding.ie';
+
+const serviceAreas = [
+  'Dublin City',
+  'South Dublin',
+  'North Dublin',
+  'Monaghan',
+  'Cavan',
+  'Meath',
+  'Louth',
+  'Midlands',
+  'North Ireland',
+];
+---
+
+<Layout title="Contact Us" description="Contact Bespoke Floor Sanding Co. for a free quote. Call +353 87 402 7101 or email info@bespokefloorsanding.ie. Serving Dublin, Monaghan, Cavan, and Midlands Ireland.">
+  <section class="py-20 bg-background">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <h1 class="text-4xl sm:text-5xl font-bold text-text mb-4">Get In Touch</h1>
+        <p class="text-lg text-text-muted max-w-2xl mx-auto">
+          Ready to transform your floors? Contact us for a free, no-obligation quote.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Info -->
+        <div>
+          <h2 class="text-2xl font-bold text-text mb-6">Contact Information</h2>
+          
+          <!-- Phone - Primary CTA -->
+          <a
+            href={phoneHref}
+            class="flex items-center gap-4 bg-cta hover:bg-cta-hover text-background p-6 rounded-xl mb-4 transition-all hover:scale-[1.02]"
+          >
+            <div class="w-12 h-12 bg-background/20 rounded-full flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-lg">Call Us Now</p>
+              <p class="text-background/80">{phone}</p>
+            </div>
+          </a>
+          
+          <!-- Email -->
+          <a
+            href={emailHref}
+            class="flex items-center gap-4 bg-background-light hover:bg-background-lighter border border-background-lighter p-6 rounded-xl mb-8 transition-all"
+          >
+            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-text">Email Us</p>
+              <p class="text-text-muted">{email}</p>
+            </div>
+          </a>
+          
+          <!-- Service Areas -->
+          <h3 class="text-lg font-semibold text-text mb-4">Service Areas</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            {serviceAreas.map((area) => (
+              <div class="flex items-center gap-2 text-text-muted text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span>{area}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="bg-background-light border border-background-lighter rounded-xl p-8">
+          <h2 class="text-2xl font-bold text-text mb-6">Send Us a Message</h2>
+          
+          <form id="contact-form" class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-text mb-2">Name *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full bg-background border border-background-lighter rounded-lg px-4 py-3 text-text placeholder-text-muted focus:outline-none focus:border-primary transition-colors"
+                placeholder="Your name"
+              />
+            </div>
+            
+            <div>
+              <label for="email" class="block text-sm font-medium text-text mb-2">Email *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full bg-background border border-background-lighter rounded-lg px-4 py-3 text-text placeholder-text-muted focus:outline-none focus:border-primary transition-colors"
+                placeholder="your@email.com"
+              />
+            </div>
+            
+            <div>
+              <label for="phone" class="block text-sm font-medium text-text mb-2">Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                class="w-full bg-background border border-background-lighter rounded-lg px-4 py-3 text-text placeholder-text-muted focus:outline-none focus:border-primary transition-colors"
+                placeholder="Your phone number"
+              />
+            </div>
+            
+            <div>
+              <label for="location" class="block text-sm font-medium text-text mb-2">Location</label>
+              <select
+                id="location"
+                name="location"
+                class="w-full bg-background border border-background-lighter rounded-lg px-4 py-3 text-text focus:outline-none focus:border-primary transition-colors"
+              >
+                <option value="">Select your area</option>
+                {serviceAreas.map((area) => (
+                  <option value={area}>{area}</option>
+                ))}
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="message" class="block text-sm font-medium text-text mb-2">Message *</label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="4"
+                class="w-full bg-background border border-background-lighter rounded-lg px-4 py-3 text-text placeholder-text-muted focus:outline-none focus:border-primary transition-colors resize-none"
+                placeholder="Tell us about your project..."
+              ></textarea>
+            </div>
+            
+            <button
+              type="submit"
+              class="w-full bg-cta hover:bg-cta-hover text-background font-semibold px-6 py-4 rounded-lg transition-all hover:scale-[1.02]"
+            >
+              Send Message
+            </button>
+          </form>
+          
+          <p class="text-text-muted text-sm mt-4 text-center">
+            Or call us directly at <a href={phoneHref} class="text-primary hover:text-primary-light">{phone}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      
+      if (response.ok) {
+        alert('Thank you! We will get back to you soon.');
+        form.reset();
+      } else {
+        alert('Something went wrong. Please call us directly.');
+      }
+    } catch (error) {
+      alert('Something went wrong. Please call us directly.');
+    }
+  });
+</script>
