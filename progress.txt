@@ -1,0 +1,8 @@
+# Ralph Progress Log
+Started: Thu Jan 22 2026
+Project: Bespoke Floor Sanding Website
+
+## Codebase Patterns
+(Patterns will be added here as Ralph discovers them)
+
+---
