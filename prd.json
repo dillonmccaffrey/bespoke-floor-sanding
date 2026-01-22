@@ -102,8 +102,8 @@
         "Lightbox for full-size viewing"
       ],
       "priority": 5,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Gallery grid with placeholders, ready for real images"
     },
     {
       "id": "US-006",
