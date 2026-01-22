@@ -1,26 +1,8 @@
 ---
-const phoneHref = 'tel:+353874027101';
+import { getTestimonials } from '../lib/content';
 
-const testimonials = [
-  {
-    name: 'Gary',
-    location: 'Dublin',
-    quote: 'Nygell arrived right on time and worked efficiently to sand and refinish our living room floors. Highly recommend his service!',
-    rating: 5,
-  },
-  {
-    name: 'Emma',
-    location: 'Monaghan',
-    quote: 'Nygell did an incredible job restoring our worn-out hardwood floors. He was professional, did an amazing finish, and left no mess behind!',
-    rating: 5,
-  },
-  {
-    name: 'Rachel',
-    location: 'Meath',
-    quote: 'Nygell did an outstanding job refinishing our hardwood floors. He was professional, delivered a flawless finish, and left everything spotless!',
-    rating: 5,
-  },
-];
+const phoneHref = 'tel:+353874027101';
+const testimonials = getTestimonials();
 ---
 
 <section class="py-20 bg-background">

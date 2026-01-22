@@ -12,6 +12,10 @@ services:
       - CONTACT_EMAIL=info@bespokefloorsanding.ie
       - UMAMI_WEBSITE_ID=${UMAMI_WEBSITE_ID}
       - UMAMI_URL=${UMAMI_URL}
+      - CONTENT_DIR=/data/content
+    volumes:
+      - ./data/content:/data/content
+      - ./data/images:/app/dist/client/images/uploads
     depends_on:
       - mailserver
     healthcheck:
