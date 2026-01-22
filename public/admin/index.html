@@ -180,14 +180,26 @@
     }
     
     .entry-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       margin-bottom: 1.5rem;
     }
     
     .entry-header h2 {
       color: var(--text);
+      margin-bottom: 1rem;
+    }
+    
+    .entry-header .btn {
+      margin-bottom: 1rem;
+    }
+    
+    .entry-preview {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+      max-width: 500px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     
     .entries {
@@ -376,7 +388,7 @@
       <span class="back-link" onclick="showDashboard()">← Back to collections</span>
       <div class="entry-header">
         <h2 id="collection-title">Testimonials</h2>
-        <button class="btn btn-primary" onclick="newEntry()">+ New Entry</button>
+        <button class="btn btn-primary" onclick="newEntry()">+ Add New</button>
       </div>
       <div class="entries" id="entries-container"></div>
     </div>
@@ -516,12 +528,12 @@
         
         const container = document.getElementById('entries-container');
         container.innerHTML = entries.length === 0 
-          ? '<p style="color: var(--text-muted)">No entries yet. Click "New Entry" to create one.</p>'
+          ? '<p style="color: var(--text-muted)">No entries yet. Click "+ Add New" to create one.</p>'
           : entries.map(entry => `
             <div class="entry-item" onclick="editEntry('${entry.slug}')">
               <div>
                 <h4>${entry.data.title || entry.data.name || entry.data.businessName || entry.slug}</h4>
-                <small>${entry.file}</small>
+                <p class="entry-preview">${getEntryPreview(entry.data)}</p>
               </div>
               <div class="entry-actions">
                 <button class="btn btn-secondary" onclick="event.stopPropagation(); editEntry('${entry.slug}')">Edit</button>
@@ -717,6 +729,27 @@
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-|-$/g, '')
         + '-' + Date.now().toString(36);
+    }
+    
+    function getEntryPreview(data) {
+      // For testimonials, show the quote
+      if (data.quote) {
+        const quote = data.quote.length > 80 ? data.quote.substring(0, 80) + '...' : data.quote;
+        return `"${quote}" — ${data.location || ''}`;
+      }
+      // For gallery, show location and description
+      if (data.beforeImage || data.afterImage) {
+        return data.description || data.location || 'Gallery item';
+      }
+      // For services, show description
+      if (data.description) {
+        return data.description.length > 100 ? data.description.substring(0, 100) + '...' : data.description;
+      }
+      // For settings
+      if (data.phone || data.email) {
+        return `${data.phone || ''} | ${data.email || ''}`;
+      }
+      return '';
     }
     
     function showToast(message, type = 'success') {
