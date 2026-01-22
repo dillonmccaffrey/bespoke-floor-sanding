@@ -214,8 +214,8 @@
         "Internal linking between location pages"
       ],
       "priority": 12,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "5 location pages created"
     },
     {
       "id": "US-013",
