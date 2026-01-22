@@ -3,6 +3,21 @@ Started: Thu Jan 22 2026
 Project: Bespoke Floor Sanding Website
 
 ## Codebase Patterns
-(Patterns will be added here as Ralph discovers them)
+- Tailwind v4 uses `@theme` in CSS for custom colors (not tailwind.config.js)
+- Import global.css in Layout.astro for styles to work
+- Use `bg-background`, `text-text`, `bg-cta` etc. for theme colors
+
+---
+
+## 2026-01-22 16:41 - US-001
+- **Implemented**: Astro project with Tailwind CSS and color scheme
+- **Files created**:
+  - src/styles/global.css (Tailwind + color theme)
+  - src/layouts/Layout.astro (base layout)
+  - src/pages/index.astro (placeholder homepage)
+- **Learnings**:
+  - Tailwind v4 uses CSS-based config with `@theme` directive
+  - Colors defined as CSS custom properties
+  - Build passes successfully
 
 ---

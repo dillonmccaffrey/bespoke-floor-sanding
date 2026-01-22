@@ -1,0 +1,28 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "Premium floor sanding services in Dublin, Monaghan, Cavan, and Midlands Ireland. Call Bespoke Floor Sanding Co. for a free quote: +353 87 402 7101" 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | Bespoke Floor Sanding Co.</title>
+  </head>
+  <body class="bg-background text-text min-h-screen antialiased">
+    <slot />
+  </body>
+</html>

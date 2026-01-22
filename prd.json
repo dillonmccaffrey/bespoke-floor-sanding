@@ -7,7 +7,15 @@
     "owner": "Nygell",
     "phone": "+353 87 402 7101",
     "email": "info@bespokefloorsanding.ie",
-    "serviceAreas": ["Dublin", "Monaghan", "Cavan", "Meath", "Louth", "Midlands", "North Ireland"]
+    "serviceAreas": [
+      "Dublin",
+      "Monaghan",
+      "Cavan",
+      "Meath",
+      "Louth",
+      "Midlands",
+      "North Ireland"
+    ]
   },
   "colorScheme": {
     "primary": "#C4A052",
@@ -31,8 +39,8 @@
         "Project builds without errors"
       ],
       "priority": 1,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Completed: Astro + Tailwind v4 with color scheme"
     },
     {
       "id": "US-002",

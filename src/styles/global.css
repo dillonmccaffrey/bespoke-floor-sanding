@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  /* Bespoke Floor Sanding Color Scheme */
+  --color-primary: #C4A052;
+  --color-primary-dark: #A88A3D;
+  --color-primary-light: #D4B872;
+  
+  --color-background: #1A1A1A;
+  --color-background-light: #2A2A2A;
+  --color-background-lighter: #3A3A3A;
+  
+  --color-text: #F5F5F5;
+  --color-text-muted: #B0B0B0;
+  
+  --color-accent: #E8DCC4;
+  
+  /* Semantic colors */
+  --color-cta: #C4A052;
+  --color-cta-hover: #D4B872;
+}
