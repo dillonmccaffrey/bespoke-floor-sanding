@@ -180,8 +180,8 @@
         "Rate limiting consideration documented"
       ],
       "priority": 10,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Resend API endpoint at /api/contact"
     },
     {
       "id": "US-011",
