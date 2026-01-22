@@ -1,20 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
 ---
 
 <Layout title="Premium Floor Sanding">
-  <div class="flex flex-col items-center justify-center min-h-[calc(100vh-5rem)] p-8">
-    <h1 class="text-4xl md:text-6xl font-bold text-primary mb-4 text-center">
-      Bespoke Floor Sanding Co.
-    </h1>
-    <p class="text-xl text-text-muted mb-8 text-center max-w-2xl">
-      Premium floor sanding by trusted experts. Serving Dublin, Monaghan, Cavan, and Midlands Ireland.
-    </p>
-    <a 
-      href="tel:+353874027101" 
-      class="bg-cta hover:bg-cta-hover text-background font-semibold px-8 py-4 rounded-lg text-lg transition-colors"
-    >
-      Call Now: +353 87 402 7101
-    </a>
-  </div>
+  <Hero />
 </Layout>

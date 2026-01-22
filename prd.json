@@ -71,8 +71,8 @@
         "Mobile-responsive with stacked buttons"
       ],
       "priority": 3,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Hero with Call/Email CTAs, trust indicators"
     },
     {
       "id": "US-004",
