@@ -244,8 +244,8 @@
         "Sitemap URL in robots.txt"
       ],
       "priority": 14,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Sitemap integration + robots.txt"
     },
     {
       "id": "US-015",
