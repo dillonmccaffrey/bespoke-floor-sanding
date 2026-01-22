@@ -1,9 +1,9 @@
 backend:
   name: github
   repo: dillonmccaffrey/bespoke-floor-sanding
-  branch: main
+  branch: master
   base_url: https://bespoke.dillonmccaffrey.dev
-  auth_endpoint: /oauth/auth
+  auth_endpoint: /api/cms/auth
 
 local_backend: true
 

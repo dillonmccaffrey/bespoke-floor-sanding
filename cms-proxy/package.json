@@ -1,5 +1,5 @@
 {
-  "name": "decap-oauth-proxy",
+  "name": "decap-cms-auth",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
