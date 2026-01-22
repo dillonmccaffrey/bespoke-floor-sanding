@@ -1,152 +1,730 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex" />
-    <title>Content Manager | Bespoke Floor Sanding</title>
-    <style>
-      * { box-sizing: border-box; }
-      body { 
-        margin: 0; 
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      }
-      
-      /* Login Screen */
-      #login-screen {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #1A1A1A;
-      }
-      
-      .login-box {
-        background: #2A2A2A;
-        padding: 2rem;
-        border-radius: 12px;
-        width: 100%;
-        max-width: 400px;
-        margin: 1rem;
-        border: 1px solid #3A3A3A;
-      }
-      
-      .login-box h1 {
-        color: #C4A052;
-        margin: 0 0 0.5rem 0;
-        font-size: 1.5rem;
-        text-align: center;
-      }
-      
-      .login-box p {
-        color: #B0B0B0;
-        margin: 0 0 1.5rem 0;
-        text-align: center;
-        font-size: 0.9rem;
-      }
-      
-      .login-box input {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        border: 1px solid #3A3A3A;
-        border-radius: 8px;
-        background: #1A1A1A;
-        color: #F5F5F5;
-        font-size: 1rem;
-        margin-bottom: 1rem;
-      }
-      
-      .login-box input:focus {
-        outline: none;
-        border-color: #C4A052;
-      }
-      
-      .login-box button {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        border: none;
-        border-radius: 8px;
-        background: #C4A052;
-        color: #1A1A1A;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      
-      .login-box button:hover {
-        background: #D4B872;
-      }
-      
-      .error {
-        color: #ff6b6b;
-        text-align: center;
-        margin-top: 1rem;
-        display: none;
-      }
-      
-      #cms-container {
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Login Screen -->
-    <div id="login-screen">
-      <div class="login-box">
-        <h1>Bespoke Floor Sanding</h1>
-        <p>Enter password to access the content manager</p>
-        <form id="login-form">
-          <input type="password" id="password" placeholder="Password" autocomplete="current-password" />
-          <button type="submit">Login</button>
-          <p class="error" id="error">Incorrect password</p>
-        </form>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Content Manager | Bespoke Floor Sanding</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --gold: #C4A052;
+      --gold-hover: #D4B872;
+      --bg-dark: #1A1A1A;
+      --bg-card: #2A2A2A;
+      --bg-input: #1A1A1A;
+      --border: #3A3A3A;
+      --text: #F5F5F5;
+      --text-muted: #B0B0B0;
+      --danger: #e74c3c;
+      --success: #27ae60;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    
+    /* Login Screen */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .login-box {
+      background: var(--bg-card);
+      padding: 2rem;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+      margin: 1rem;
+      border: 1px solid var(--border);
+    }
+    
+    .login-box h1 {
+      color: var(--gold);
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .login-box p {
+      color: var(--text-muted);
+      text-align: center;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    input, textarea, select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-input);
+      color: var(--text);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    
+    button, .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary {
+      background: var(--gold);
+      color: var(--bg-dark);
+      width: 100%;
+    }
+    
+    .btn-primary:hover {
+      background: var(--gold-hover);
+    }
+    
+    .btn-secondary {
+      background: var(--border);
+      color: var(--text);
+    }
+    
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+    
+    .error-msg {
+      color: var(--danger);
+      text-align: center;
+      margin-top: 1rem;
+      display: none;
+    }
+    
+    /* Dashboard */
+    #dashboard {
+      display: none;
+    }
+    
+    .header {
+      background: var(--bg-card);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .header h1 {
+      color: var(--gold);
+      font-size: 1.25rem;
+    }
+    
+    .header button {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .collections {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .collection-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .collection-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    
+    .collection-card h3 {
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    
+    .collection-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    
+    /* Entry List */
+    #entry-list {
+      display: none;
+    }
+    
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .entry-header h2 {
+      color: var(--text);
+    }
+    
+    .entries {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .entry-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .entry-item:hover {
+      border-color: var(--gold);
+    }
+    
+    .entry-item h4 {
+      margin-bottom: 0.25rem;
+    }
+    
+    .entry-item small {
+      color: var(--text-muted);
+    }
+    
+    .entry-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .entry-actions button {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+    }
+    
+    /* Entry Editor */
+    #entry-editor {
+      display: none;
+    }
+    
+    .editor-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .form-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .form-actions button {
+      flex: 1;
+    }
+    
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      color: white;
+      font-weight: 500;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 1000;
+    }
+    
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .toast.success { background: var(--success); }
+    .toast.error { background: var(--danger); }
+    
+    .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+    
+    .back-link:hover {
+      color: var(--gold);
+    }
+    
+    /* Image preview */
+    .image-preview {
+      max-width: 200px;
+      max-height: 150px;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+    }
+    
+    .image-upload {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    
+    .image-upload input[type="file"] {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Screen -->
+  <div id="login-screen">
+    <div class="login-box">
+      <h1>Bespoke Floor Sanding</h1>
+      <p>Enter password to access the content manager</p>
+      <form id="login-form">
+        <input type="password" id="password" placeholder="Password" autocomplete="current-password" required>
+        <button type="submit" class="btn btn-primary">Login</button>
+        <p class="error-msg" id="login-error">Incorrect password</p>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Dashboard -->
+  <div id="dashboard">
+    <div class="header">
+      <h1>Content Manager</h1>
+      <button class="btn btn-secondary" onclick="logout()">Logout</button>
+    </div>
+    <div class="container">
+      <div class="collections">
+        <div class="collection-card" onclick="showCollection('testimonials')">
+          <h3>⭐ Testimonials</h3>
+          <p>Manage customer reviews and ratings</p>
+        </div>
+        <div class="collection-card" onclick="showCollection('gallery')">
+          <h3>📷 Gallery</h3>
+          <p>Before/after project photos</p>
+        </div>
+        <div class="collection-card" onclick="showCollection('services')">
+          <h3>🔧 Services</h3>
+          <p>Service descriptions and features</p>
+        </div>
+        <div class="collection-card" onclick="showCollection('settings')">
+          <h3>⚙️ Settings</h3>
+          <p>Site settings and contact info</p>
+        </div>
       </div>
     </div>
+  </div>
+  
+  <!-- Entry List -->
+  <div id="entry-list">
+    <div class="header">
+      <h1>Content Manager</h1>
+      <button class="btn btn-secondary" onclick="logout()">Logout</button>
+    </div>
+    <div class="container">
+      <span class="back-link" onclick="showDashboard()">← Back to collections</span>
+      <div class="entry-header">
+        <h2 id="collection-title">Testimonials</h2>
+        <button class="btn btn-primary" onclick="newEntry()">+ New Entry</button>
+      </div>
+      <div class="entries" id="entries-container"></div>
+    </div>
+  </div>
+  
+  <!-- Entry Editor -->
+  <div id="entry-editor">
+    <div class="header">
+      <h1>Content Manager</h1>
+      <button class="btn btn-secondary" onclick="logout()">Logout</button>
+    </div>
+    <div class="container">
+      <span class="back-link" onclick="showEntryList()">← Back to list</span>
+      <div class="editor-header">
+        <h2 id="editor-title">Edit Entry</h2>
+      </div>
+      <form id="editor-form"></form>
+    </div>
+  </div>
+  
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+  
+  <script>
+    const API_BASE = '/api/cms';
+    let token = localStorage.getItem('cms-token');
+    let currentCollection = null;
+    let currentSlug = null;
     
-    <!-- CMS Container (hidden until login) -->
-    <div id="cms-container"></div>
+    // Collection schemas
+    const schemas = {
+      testimonials: [
+        { name: 'name', label: 'Customer Name', type: 'text', required: true },
+        { name: 'location', label: 'Location', type: 'text', required: true },
+        { name: 'quote', label: 'Quote', type: 'textarea', required: true },
+        { name: 'rating', label: 'Rating (1-5)', type: 'number', min: 1, max: 5, required: true },
+        { name: 'order', label: 'Display Order', type: 'number', required: false }
+      ],
+      gallery: [
+        { name: 'title', label: 'Project Title', type: 'text', required: true },
+        { name: 'location', label: 'Location', type: 'text', required: true },
+        { name: 'description', label: 'Description', type: 'textarea', required: false },
+        { name: 'beforeImage', label: 'Before Image', type: 'image', required: true },
+        { name: 'afterImage', label: 'After Image', type: 'image', required: true },
+        { name: 'order', label: 'Display Order', type: 'number', required: false }
+      ],
+      services: [
+        { name: 'title', label: 'Service Title', type: 'text', required: true },
+        { name: 'description', label: 'Short Description', type: 'textarea', required: true },
+        { name: 'fullDescription', label: 'Full Description', type: 'textarea', required: false },
+        { name: 'icon', label: 'Icon', type: 'select', options: ['sanding', 'restoration', 'finish', 'commercial'], required: true },
+        { name: 'order', label: 'Display Order', type: 'number', required: false }
+      ],
+      settings: [
+        { name: 'businessName', label: 'Business Name', type: 'text', required: true },
+        { name: 'phone', label: 'Phone Number', type: 'text', required: true },
+        { name: 'email', label: 'Email', type: 'text', required: true },
+        { name: 'tagline', label: 'Tagline', type: 'text', required: false }
+      ]
+    };
     
-    <script>
-      const CORRECT_HASH = '8f9b5c2a3d4e6f7a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a';
-      
-      async function hashPassword(password) {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(password + 'bespoke-salt-2024');
-        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-      }
-      
-      // Check if already logged in
-      const isLoggedIn = sessionStorage.getItem('cms-auth') === 'true';
-      
-      if (isLoggedIn) {
-        showCMS();
-      }
-      
-      document.getElementById('login-form').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const password = document.getElementById('password').value;
-        
-        // Simple password check (hashed for basic security)
-        if (password === 'xr6$wIXzFL6ZQN@') {
-          sessionStorage.setItem('cms-auth', 'true');
-          showCMS();
+    // Check auth on load
+    if (token) {
+      checkAuth();
+    }
+    
+    async function checkAuth() {
+      try {
+        const res = await fetch(`${API_BASE}/auth/check`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.ok) {
+          showDashboard();
         } else {
-          document.getElementById('error').style.display = 'block';
+          token = null;
+          localStorage.removeItem('cms-token');
         }
-      });
-      
-      function showCMS() {
-        document.getElementById('login-screen').style.display = 'none';
-        document.getElementById('cms-container').style.display = 'block';
-        
-        // Load Decap CMS
-        const script = document.createElement('script');
-        script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
-        document.body.appendChild(script);
+      } catch {
+        token = null;
+        localStorage.removeItem('cms-token');
       }
-    </script>
-  </body>
+    }
+    
+    // Login
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const password = document.getElementById('password').value;
+      
+      try {
+        const res = await fetch(`${API_BASE}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password })
+        });
+        
+        if (res.ok) {
+          const data = await res.json();
+          token = data.token;
+          localStorage.setItem('cms-token', token);
+          showDashboard();
+        } else {
+          document.getElementById('login-error').style.display = 'block';
+        }
+      } catch (err) {
+        document.getElementById('login-error').textContent = 'Connection error';
+        document.getElementById('login-error').style.display = 'block';
+      }
+    });
+    
+    function logout() {
+      token = null;
+      localStorage.removeItem('cms-token');
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('entry-list').style.display = 'none';
+      document.getElementById('entry-editor').style.display = 'none';
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('password').value = '';
+    }
+    
+    function showDashboard() {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('entry-list').style.display = 'none';
+      document.getElementById('entry-editor').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+    }
+    
+    async function showCollection(collection) {
+      currentCollection = collection;
+      document.getElementById('collection-title').textContent = 
+        collection.charAt(0).toUpperCase() + collection.slice(1);
+      
+      try {
+        const res = await fetch(`${API_BASE}/collections/${collection}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const entries = await res.json();
+        
+        const container = document.getElementById('entries-container');
+        container.innerHTML = entries.length === 0 
+          ? '<p style="color: var(--text-muted)">No entries yet. Click "New Entry" to create one.</p>'
+          : entries.map(entry => `
+            <div class="entry-item" onclick="editEntry('${entry.slug}')">
+              <div>
+                <h4>${entry.data.title || entry.data.name || entry.data.businessName || entry.slug}</h4>
+                <small>${entry.file}</small>
+              </div>
+              <div class="entry-actions">
+                <button class="btn btn-secondary" onclick="event.stopPropagation(); editEntry('${entry.slug}')">Edit</button>
+                <button class="btn btn-danger" onclick="event.stopPropagation(); deleteEntry('${entry.slug}')">Delete</button>
+              </div>
+            </div>
+          `).join('');
+        
+        document.getElementById('dashboard').style.display = 'none';
+        document.getElementById('entry-list').style.display = 'block';
+      } catch (err) {
+        showToast('Failed to load entries', 'error');
+      }
+    }
+    
+    function showEntryList() {
+      document.getElementById('entry-editor').style.display = 'none';
+      showCollection(currentCollection);
+    }
+    
+    function newEntry() {
+      currentSlug = null;
+      document.getElementById('editor-title').textContent = 'New Entry';
+      renderForm({});
+      document.getElementById('entry-list').style.display = 'none';
+      document.getElementById('entry-editor').style.display = 'block';
+    }
+    
+    async function editEntry(slug) {
+      currentSlug = slug;
+      document.getElementById('editor-title').textContent = 'Edit Entry';
+      
+      try {
+        const res = await fetch(`${API_BASE}/collections/${currentCollection}/${slug}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const { data } = await res.json();
+        renderForm(data);
+        document.getElementById('entry-list').style.display = 'none';
+        document.getElementById('entry-editor').style.display = 'block';
+      } catch {
+        showToast('Failed to load entry', 'error');
+      }
+    }
+    
+    function renderForm(data) {
+      const schema = schemas[currentCollection] || [];
+      const form = document.getElementById('editor-form');
+      
+      form.innerHTML = schema.map(field => {
+        const value = data[field.name] || '';
+        
+        if (field.type === 'textarea') {
+          return `
+            <div class="form-group">
+              <label>${field.label}${field.required ? ' *' : ''}</label>
+              <textarea name="${field.name}" ${field.required ? 'required' : ''}>${value}</textarea>
+            </div>
+          `;
+        } else if (field.type === 'select') {
+          return `
+            <div class="form-group">
+              <label>${field.label}${field.required ? ' *' : ''}</label>
+              <select name="${field.name}" ${field.required ? 'required' : ''}>
+                ${field.options.map(opt => `<option value="${opt}" ${value === opt ? 'selected' : ''}>${opt}</option>`).join('')}
+              </select>
+            </div>
+          `;
+        } else if (field.type === 'image') {
+          return `
+            <div class="form-group">
+              <label>${field.label}${field.required ? ' *' : ''}</label>
+              <div class="image-upload">
+                <input type="file" accept="image/*" onchange="uploadImage(this, '${field.name}')">
+                <input type="hidden" name="${field.name}" value="${value}">
+              </div>
+              ${value ? `<img src="${value}" class="image-preview" alt="Preview">` : ''}
+            </div>
+          `;
+        } else {
+          return `
+            <div class="form-group">
+              <label>${field.label}${field.required ? ' *' : ''}</label>
+              <input type="${field.type}" name="${field.name}" value="${value}" 
+                ${field.required ? 'required' : ''} 
+                ${field.min !== undefined ? `min="${field.min}"` : ''} 
+                ${field.max !== undefined ? `max="${field.max}"` : ''}>
+            </div>
+          `;
+        }
+      }).join('') + `
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" onclick="showEntryList()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      `;
+      
+      form.onsubmit = saveEntry;
+    }
+    
+    async function uploadImage(input, fieldName) {
+      const file = input.files[0];
+      if (!file) return;
+      
+      const formData = new FormData();
+      formData.append('file', file);
+      
+      try {
+        const res = await fetch(`${API_BASE}/media`, {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}` },
+          body: formData
+        });
+        
+        if (res.ok) {
+          const { url } = await res.json();
+          document.querySelector(`input[name="${fieldName}"]`).value = url;
+          
+          // Show preview
+          const container = input.closest('.form-group');
+          let preview = container.querySelector('.image-preview');
+          if (!preview) {
+            preview = document.createElement('img');
+            preview.className = 'image-preview';
+            container.appendChild(preview);
+          }
+          preview.src = url;
+          
+          showToast('Image uploaded', 'success');
+        } else {
+          showToast('Upload failed', 'error');
+        }
+      } catch {
+        showToast('Upload failed', 'error');
+      }
+    }
+    
+    async function saveEntry(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      const data = {};
+      for (const [key, value] of formData) {
+        data[key] = value;
+      }
+      
+      // Generate slug if new entry
+      const slug = currentSlug || generateSlug(data.title || data.name || data.businessName || 'entry');
+      
+      try {
+        const res = await fetch(`${API_BASE}/collections/${currentCollection}/${slug}`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ data })
+        });
+        
+        if (res.ok) {
+          showToast('Saved! Site will update shortly.', 'success');
+          setTimeout(() => showEntryList(), 1500);
+        } else {
+          showToast('Save failed', 'error');
+        }
+      } catch {
+        showToast('Save failed', 'error');
+      }
+    }
+    
+    async function deleteEntry(slug) {
+      if (!confirm('Are you sure you want to delete this entry?')) return;
+      
+      try {
+        const res = await fetch(`${API_BASE}/collections/${currentCollection}/${slug}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        
+        if (res.ok) {
+          showToast('Deleted', 'success');
+          showCollection(currentCollection);
+        } else {
+          showToast('Delete failed', 'error');
+        }
+      } catch {
+        showToast('Delete failed', 'error');
+      }
+    }
+    
+    function generateSlug(text) {
+      return text.toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '')
+        + '-' + Date.now().toString(36);
+    }
+    
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast ${type} show`;
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+  </script>
+</body>
 </html>

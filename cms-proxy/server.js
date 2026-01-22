@@ -1,177 +1,291 @@
 const express = require('express');
+const fs = require('fs').promises;
+const path = require('path');
 const crypto = require('crypto');
+const multer = require('multer');
+const yaml = require('js-yaml');
+const { exec } = require('child_process');
 
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-const CMS_PASSWORD = process.env.CMS_PASSWORD || 'xr6$wIXzFL6ZQN@';
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const CMS_PASSWORD = process.env.CMS_PASSWORD || 'admin123';
+const CONTENT_DIR = process.env.CONTENT_DIR || '/app/src/content';
+const MEDIA_DIR = process.env.MEDIA_DIR || '/app/public/images';
+const APP_DIR = process.env.APP_DIR || '/app';
 
-// Store authenticated sessions
+// Session store
 const sessions = new Map();
 
-// Clean expired sessions every hour
+// File upload config
+const storage = multer.diskStorage({
+  destination: MEDIA_DIR,
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    const name = path.basename(file.originalname, ext).replace(/[^a-z0-9]/gi, '-').toLowerCase();
+    cb(null, `${name}-${Date.now()}${ext}`);
+  }
+});
+const upload = multer({ storage, limits: { fileSize: 5 * 1024 * 1024 } });
+
+// Auth middleware
+const requireAuth = (req, res, next) => {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  if (token && sessions.has(token)) {
+    sessions.get(token).lastAccess = Date.now();
+    return next();
+  }
+  res.status(401).json({ error: 'Unauthorized' });
+};
+
+// Clean old sessions periodically
 setInterval(() => {
   const now = Date.now();
   for (const [token, data] of sessions) {
-    if (now - data.created > 24 * 60 * 60 * 1000) {
+    if (now - data.lastAccess > 24 * 60 * 60 * 1000) {
       sessions.delete(token);
     }
   }
 }, 60 * 60 * 1000);
 
-// Password login - returns a GitHub token for CMS to use
-app.post('/auth', (req, res) => {
+// ============ AUTH ENDPOINTS ============
+
+app.post('/auth/login', (req, res) => {
   const { password } = req.body;
   
-  console.log('Login attempt received');
-  
   if (password === CMS_PASSWORD) {
-    // Return the GitHub token directly to the CMS
-    // Decap CMS expects: { token, provider }
-    console.log('Password correct, returning token');
-    
-    const responseHtml = `
-<!DOCTYPE html>
-<html>
-<head><title>Authenticating...</title></head>
-<body>
-<script>
-(function() {
-  function receiveMessage(e) {
-    console.log("receiveMessage", e);
-    window.opener.postMessage(
-      'authorization:github:success:{"token":"${GITHUB_TOKEN}","provider":"github"}',
-      e.origin
-    );
-    window.removeEventListener("message", receiveMessage, false);
-  }
-  window.addEventListener("message", receiveMessage, false);
-  window.opener.postMessage("authorizing:github", "*");
-})();
-</script>
-</body>
-</html>
-    `;
-    
-    res.send(responseHtml);
+    const token = crypto.randomBytes(32).toString('hex');
+    sessions.set(token, { created: Date.now(), lastAccess: Date.now() });
+    res.json({ token, user: { name: 'Admin' } });
   } else {
-    console.log('Password incorrect');
-    res.status(401).send(`
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Login Failed</title>
-  <style>
-    body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #1A1A1A; color: #F5F5F5; }
-    .box { background: #2A2A2A; padding: 2rem; border-radius: 8px; text-align: center; }
-    a { color: #C4A052; }
-  </style>
-</head>
-<body>
-  <div class="box">
-    <h2>Incorrect Password</h2>
-    <p><a href="/admin/">Try again</a></p>
-  </div>
-</body>
-</html>
-    `);
+    res.status(401).json({ error: 'Invalid password' });
   }
 });
 
-// Login form page
-app.get('/auth', (req, res) => {
-  res.send(`
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CMS Login | Bespoke Floor Sanding</title>
-  <style>
-    * { box-sizing: border-box; }
-    body { 
-      margin: 0; 
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #1A1A1A;
-    }
-    .login-box {
-      background: #2A2A2A;
-      padding: 2rem;
-      border-radius: 12px;
-      width: 100%;
-      max-width: 400px;
-      margin: 1rem;
-      border: 1px solid #3A3A3A;
-    }
-    h1 {
-      color: #C4A052;
-      margin: 0 0 0.5rem 0;
-      font-size: 1.5rem;
-      text-align: center;
-    }
-    p {
-      color: #B0B0B0;
-      margin: 0 0 1.5rem 0;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-    input {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid #3A3A3A;
-      border-radius: 8px;
-      background: #1A1A1A;
-      color: #F5F5F5;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
-    input:focus {
-      outline: none;
-      border-color: #C4A052;
-    }
-    button {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: none;
-      border-radius: 8px;
-      background: #C4A052;
-      color: #1A1A1A;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #D4B872;
-    }
-  </style>
-</head>
-<body>
-  <div class="login-box">
-    <h1>Bespoke Floor Sanding</h1>
-    <p>Enter password to access the content manager</p>
-    <form method="POST" action="/auth">
-      <input type="password" name="password" placeholder="Password" autofocus required>
-      <button type="submit">Login</button>
-    </form>
-  </div>
-</body>
-</html>
-  `);
+app.get('/auth/check', requireAuth, (req, res) => {
+  res.json({ authenticated: true });
 });
 
-// Health check
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
+app.post('/auth/logout', (req, res) => {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  if (token) sessions.delete(token);
+  res.json({ success: true });
 });
+
+// ============ CONTENT ENDPOINTS ============
+
+// List collections
+app.get('/collections', requireAuth, async (req, res) => {
+  try {
+    const collections = ['testimonials', 'gallery', 'services', 'settings'];
+    res.json(collections);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// List entries in a collection
+app.get('/collections/:collection', requireAuth, async (req, res) => {
+  try {
+    const { collection } = req.params;
+    const collectionDir = path.join(CONTENT_DIR, collection);
+    
+    let files;
+    try {
+      files = await fs.readdir(collectionDir);
+    } catch {
+      files = [];
+    }
+    
+    const entries = await Promise.all(
+      files
+        .filter(f => f.endsWith('.md') || f.endsWith('.json'))
+        .map(async (file) => {
+          const content = await fs.readFile(path.join(collectionDir, file), 'utf-8');
+          const slug = file.replace(/\.(md|json)$/, '');
+          return { slug, file, data: parseContent(content, file) };
+        })
+    );
+    
+    res.json(entries);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Get single entry
+app.get('/collections/:collection/:slug', requireAuth, async (req, res) => {
+  try {
+    const { collection, slug } = req.params;
+    const { content, ext } = await readEntry(collection, slug);
+    res.json({ slug, data: parseContent(content, `${slug}${ext}`), raw: content });
+  } catch (err) {
+    res.status(404).json({ error: 'Entry not found' });
+  }
+});
+
+// Create/Update entry
+app.post('/collections/:collection/:slug', requireAuth, async (req, res) => {
+  try {
+    const { collection, slug } = req.params;
+    const { data } = req.body;
+    const collectionDir = path.join(CONTENT_DIR, collection);
+    
+    await fs.mkdir(collectionDir, { recursive: true });
+    
+    const ext = collection === 'settings' ? '.json' : '.md';
+    const filePath = path.join(collectionDir, `${slug}${ext}`);
+    
+    let content;
+    if (ext === '.json') {
+      content = JSON.stringify(data, null, 2);
+    } else {
+      content = formatMarkdown(data);
+    }
+    
+    await fs.writeFile(filePath, content, 'utf-8');
+    
+    // Trigger rebuild
+    triggerRebuild();
+    
+    res.json({ success: true, slug });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Delete entry
+app.delete('/collections/:collection/:slug', requireAuth, async (req, res) => {
+  try {
+    const { collection, slug } = req.params;
+    const collectionDir = path.join(CONTENT_DIR, collection);
+    
+    for (const ext of ['.md', '.json']) {
+      try {
+        await fs.unlink(path.join(collectionDir, `${slug}${ext}`));
+        triggerRebuild();
+        return res.json({ success: true });
+      } catch {}
+    }
+    
+    res.status(404).json({ error: 'Entry not found' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ============ MEDIA ENDPOINTS ============
+
+app.get('/media', requireAuth, async (req, res) => {
+  try {
+    const files = await fs.readdir(MEDIA_DIR);
+    const media = files
+      .filter(f => /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(f))
+      .map(f => ({ name: f, url: `/images/${f}` }));
+    res.json(media);
+  } catch {
+    res.json([]);
+  }
+});
+
+app.post('/media', requireAuth, upload.single('file'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
+  res.json({ url: `/images/${req.file.filename}`, name: req.file.filename });
+});
+
+app.delete('/media/:filename', requireAuth, async (req, res) => {
+  try {
+    await fs.unlink(path.join(MEDIA_DIR, req.params.filename));
+    res.json({ success: true });
+  } catch {
+    res.status(404).json({ error: 'File not found' });
+  }
+});
+
+// ============ HELPERS ============
+
+async function readEntry(collection, slug) {
+  const collectionDir = path.join(CONTENT_DIR, collection);
+  
+  for (const ext of ['.md', '.json']) {
+    try {
+      const filePath = path.join(collectionDir, `${slug}${ext}`);
+      const content = await fs.readFile(filePath, 'utf-8');
+      return { content, ext };
+    } catch {}
+  }
+  
+  throw new Error('Entry not found');
+}
+
+function parseContent(content, filename) {
+  if (filename.endsWith('.json')) {
+    try {
+      return JSON.parse(content);
+    } catch {
+      return {};
+    }
+  }
+  
+  // Parse YAML frontmatter
+  const match = content.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  if (match) {
+    try {
+      const data = yaml.load(match[1]) || {};
+      data.body = match[2];
+      return data;
+    } catch {
+      return { body: content };
+    }
+  }
+  
+  return { body: content };
+}
+
+function formatMarkdown(data) {
+  const { body, ...frontmatter } = data;
+  let content = '---\n';
+  content += yaml.dump(frontmatter);
+  content += '---\n';
+  if (body) content += body;
+  return content;
+}
+
+// Debounced rebuild - calls webhook to trigger site rebuild
+const REBUILD_WEBHOOK = process.env.REBUILD_WEBHOOK;
+let rebuildTimeout;
+let rebuildPending = false;
+
+function triggerRebuild() {
+  rebuildPending = true;
+  clearTimeout(rebuildTimeout);
+  rebuildTimeout = setTimeout(async () => {
+    console.log('Triggering site rebuild...');
+    rebuildPending = false;
+    
+    if (REBUILD_WEBHOOK) {
+      try {
+        await fetch(REBUILD_WEBHOOK, { method: 'POST' });
+        console.log('Rebuild triggered via webhook');
+      } catch (err) {
+        console.error('Webhook failed:', err.message);
+      }
+    }
+  }, 3000);
+}
+
+// Endpoint to check if rebuild is pending
+app.get('/rebuild-status', (req, res) => {
+  res.json({ pending: rebuildPending });
+});
+
+// ============ START SERVER ============
 
 const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
-  console.log(`CMS Auth Proxy running on port ${PORT}`);
-  console.log(`GitHub token configured: ${GITHUB_TOKEN ? 'Yes' : 'No'}`);
+  console.log(`CMS API running on port ${PORT}`);
+  console.log(`Content dir: ${CONTENT_DIR}`);
+  console.log(`Media dir: ${MEDIA_DIR}`);
 });

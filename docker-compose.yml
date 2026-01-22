@@ -20,14 +20,21 @@ services:
       timeout: 10s
       retries: 3
 
-  cms-auth:
+  cms-api:
     build: ./cms-proxy
     restart: unless-stopped
     ports:
       - "3002:3002"
     environment:
-      - CMS_PASSWORD=${CMS_PASSWORD:-xr6$$wIXzFL6ZQN@}
-      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - CMS_PASSWORD=${CMS_PASSWORD}
+      - CONTENT_DIR=/data/content
+      - MEDIA_DIR=/data/images
+      - REBUILD_WEBHOOK=http://host.docker.internal:9000/rebuild
+    volumes:
+      - ./data/content:/data/content
+      - ./data/images:/data/images
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   # Lightweight mail relay for sending emails
   mailserver:
