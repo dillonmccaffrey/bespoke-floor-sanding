@@ -2,11 +2,11 @@
 ---
 
 <button
-  id="theme-toggle"
-  class="relative w-14 h-7 rounded-full bg-background-lighter border border-text-muted/30 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+  class="theme-toggle relative w-14 h-7 rounded-full bg-background-lighter border border-text-muted/30 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
   aria-label="Toggle theme"
   role="switch"
   aria-checked="false"
+  type="button"
 >
   <!-- Track icons -->
   <span class="absolute inset-0 flex items-center justify-between px-1.5 pointer-events-none">
@@ -20,55 +20,80 @@
     </svg>
   </span>
   <!-- Toggle knob -->
-  <span
-    id="toggle-knob"
-    class="absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-text shadow-md transition-transform duration-200"
-  ></span>
+  <span class="toggle-knob absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-text shadow-md transition-transform duration-200"></span>
 </button>
 
 <script>
-  const toggle = document.getElementById('theme-toggle');
-  const knob = document.getElementById('toggle-knob');
-  const html = document.documentElement;
-
-  function getSystemTheme() {
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  }
-
-  function getStoredTheme() {
-    return localStorage.getItem('theme');
-  }
-
-  function setTheme(theme: string) {
-    if (theme === 'light') {
-      html.classList.add('light');
-      html.classList.remove('dark');
-      knob?.classList.remove('translate-x-7');
-      toggle?.setAttribute('aria-checked', 'true');
-    } else {
-      html.classList.add('dark');
-      html.classList.remove('light');
-      knob?.classList.add('translate-x-7');
-      toggle?.setAttribute('aria-checked', 'false');
+  // Theme toggle functionality - works with multiple toggles on page
+  function initThemeToggle() {
+    const html = document.documentElement;
+    const toggles = document.querySelectorAll('.theme-toggle');
+    
+    function getSystemTheme(): string {
+      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
     }
-    localStorage.setItem('theme', theme);
+
+    function getStoredTheme(): string | null {
+      return localStorage.getItem('theme');
+    }
+
+    function updateKnobs(theme: string) {
+      toggles.forEach(toggle => {
+        const knob = toggle.querySelector('.toggle-knob');
+        if (theme === 'light') {
+          knob?.classList.remove('translate-x-7');
+          toggle.setAttribute('aria-checked', 'true');
+        } else {
+          knob?.classList.add('translate-x-7');
+          toggle.setAttribute('aria-checked', 'false');
+        }
+      });
+    }
+
+    function setTheme(theme: string) {
+      if (theme === 'light') {
+        html.classList.add('light');
+        html.classList.remove('dark');
+      } else {
+        html.classList.add('dark');
+        html.classList.remove('light');
+      }
+      localStorage.setItem('theme', theme);
+      updateKnobs(theme);
+    }
+
+    // Initialize theme
+    const storedTheme = getStoredTheme();
+    const initialTheme = storedTheme || getSystemTheme();
+    setTheme(initialTheme);
+
+    // Add click handlers to all toggles
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const currentTheme = html.classList.contains('light') ? 'light' : 'dark';
+        setTheme(currentTheme === 'light' ? 'dark' : 'light');
+      });
+      
+      // Also handle touch events for mobile
+      toggle.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        const currentTheme = html.classList.contains('light') ? 'light' : 'dark';
+        setTheme(currentTheme === 'light' ? 'dark' : 'light');
+      });
+    });
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+      if (!getStoredTheme()) {
+        setTheme(e.matches ? 'light' : 'dark');
+      }
+    });
   }
 
-  // Initialize theme
-  const storedTheme = getStoredTheme();
-  const initialTheme = storedTheme || getSystemTheme();
-  setTheme(initialTheme);
-
-  // Toggle on click
-  toggle?.addEventListener('click', () => {
-    const currentTheme = html.classList.contains('light') ? 'light' : 'dark';
-    setTheme(currentTheme === 'light' ? 'dark' : 'light');
-  });
-
-  // Listen for system theme changes
-  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
-    if (!getStoredTheme()) {
-      setTheme(e.matches ? 'light' : 'dark');
-    }
-  });
+  // Run on initial load
+  initThemeToggle();
+  
+  // Re-run on page navigation (for Astro View Transitions)
+  document.addEventListener('astro:page-load', initThemeToggle);
 </script>

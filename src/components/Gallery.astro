@@ -1,7 +1,8 @@
 ---
-import { getGallery } from '../lib/content';
+import { getGallery, getGeneralSettings, formatPhoneHref } from '../lib/content';
 
-const phoneHref = 'tel:+353874027101';
+const settings = getGeneralSettings();
+const phoneHref = formatPhoneHref(settings.phone);
 const projects = getGallery();
 ---
 

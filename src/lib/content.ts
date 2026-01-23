@@ -87,7 +87,11 @@ export function getTestimonials(): Testimonial[] {
     ];
   }
   
-  return items;
+  // Ensure rating is a number
+  return items.map(item => ({
+    ...item,
+    rating: Number(item.rating) || 5
+  }));
 }
 
 export function getGallery(): GalleryItem[] {

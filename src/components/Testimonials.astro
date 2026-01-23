@@ -1,7 +1,8 @@
 ---
-import { getTestimonials } from '../lib/content';
+import { getTestimonials, getGeneralSettings, formatPhoneHref } from '../lib/content';
 
-const phoneHref = 'tel:+353874027101';
+const settings = getGeneralSettings();
+const phoneHref = formatPhoneHref(settings.phone);
 const testimonials = getTestimonials();
 ---
 
