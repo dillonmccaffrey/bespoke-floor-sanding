@@ -22,17 +22,29 @@
 
 /* Light mode overrides */
 html.light {
-  --color-background: #F5F5F5;
+  --color-background: #FAFAFA;
   --color-background-light: #FFFFFF;
-  --color-background-lighter: #E8E8E8;
+  --color-background-lighter: #F0F0F0;
   
   --color-text: #1A1A1A;
-  --color-text-muted: #666666;
+  --color-text-muted: #4A4A4A;
+  
+  /* Stronger primary for better contrast in light mode */
+  --color-primary: #9A7B35;
+  --color-primary-dark: #7A6028;
+  --color-cta: #9A7B35;
+  --color-cta-hover: #7A6028;
 }
 
 /* Smooth theme transition */
 html {
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hero section always uses light text for readability over image */
+html.light .hero-text {
+  --color-text: #F5F5F5;
+  --color-text-muted: #D0D0D0;
 }
 
 /* Prevent flash of wrong theme */

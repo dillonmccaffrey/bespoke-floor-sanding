@@ -26,6 +26,7 @@ interface Service {
   description: string;
   fullDescription?: string;
   icon: string;
+  image?: string;
   features?: string[];
   order?: number;
 }
