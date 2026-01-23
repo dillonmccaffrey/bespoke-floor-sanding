@@ -28,6 +28,13 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./
 
+# Copy source content for initial sync
+COPY --from=builder /app/src/content ./src/content
+
+# Copy entrypoint
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
 EXPOSE 4321
 
-CMD ["node", "dist/server/entry.mjs"]
+ENTRYPOINT ["/docker-entrypoint.sh"]

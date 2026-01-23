@@ -15,7 +15,8 @@ services:
       - CONTENT_DIR=/data/content
     volumes:
       - ./data/content:/data/content
-      - ./data/images:/app/dist/client/images/uploads
+      - ./data/images:/data/images
+      - ./data/images:/app/dist/client/images
     depends_on:
       - mailserver
     healthcheck:
@@ -33,12 +34,12 @@ services:
       - CMS_PASSWORD=${CMS_PASSWORD}
       - CONTENT_DIR=/data/content
       - MEDIA_DIR=/data/images
-      - REBUILD_WEBHOOK=http://host.docker.internal:9000/rebuild
+      - REBUILD_WEBHOOK=http://web:4321/api/rebuild
     volumes:
       - ./data/content:/data/content
       - ./data/images:/data/images
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    depends_on:
+      - web
 
   # Lightweight mail relay for sending emails
   mailserver:
