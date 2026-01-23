@@ -119,3 +119,74 @@ export function getServices(): Service[] {
   
   return items;
 }
+
+// Settings interfaces
+interface GeneralSettings {
+  businessName: string;
+  logo?: string;
+  phone: string;
+  email: string;
+  tagline?: string;
+}
+
+interface ContactSettings {
+  title?: string;
+  description?: string;
+  serviceAreas: string[];
+}
+
+interface HeroSettings {
+  headline?: string;
+  subheadline?: string;
+  badge?: string;
+}
+
+function readSettingsFile<T>(filename: string, defaults: T): T {
+  const filePath = path.join(CONTENT_DIR, 'settings', filename);
+  
+  try {
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, 'utf-8');
+      return { ...defaults, ...JSON.parse(content) };
+    }
+  } catch (err) {
+    console.error(`Error reading settings/${filename}:`, err);
+  }
+  
+  return defaults;
+}
+
+export function getGeneralSettings(): GeneralSettings {
+  return readSettingsFile<GeneralSettings>('general.json', {
+    businessName: 'Bespoke Floor Sanding Co.',
+    phone: '+353 87 402 7101',
+    email: 'info@bespokefloorsanding.ie',
+    tagline: 'Premium Floor Sanding by Trusted Experts'
+  });
+}
+
+export function getContactSettings(): ContactSettings {
+  return readSettingsFile<ContactSettings>('contact.json', {
+    title: 'Get In Touch',
+    description: 'Ready to transform your floors? Contact us for a free, no-obligation quote.',
+    serviceAreas: ['Dublin City', 'South Dublin', 'North Dublin', 'Monaghan', 'Cavan', 'Meath', 'Louth', 'Midlands', 'North Ireland']
+  });
+}
+
+export function getHeroSettings(): HeroSettings {
+  return readSettingsFile<HeroSettings>('hero.json', {
+    headline: 'Premium Floor Sanding By Trusted Experts',
+    subheadline: 'With unmatched quality, precision, and care, we restore the beauty of your wooden floors to perfection.',
+    badge: 'Trusted Experts Since 2010'
+  });
+}
+
+// Helper to format phone for tel: links
+export function formatPhoneHref(phone: string): string {
+  return 'tel:' + phone.replace(/\s+/g, '');
+}
+
+// Helper to format email for mailto: links
+export function formatEmailHref(email: string): string {
+  return 'mailto:' + email;
+}

@@ -1,18 +1,12 @@
 ---
-const phone = '+353 87 402 7101';
-const phoneHref = 'tel:+353874027101';
+import { getGeneralSettings, getContactSettings, formatPhoneHref } from '../lib/content';
 
-const areas = [
-  'Dublin City',
-  'South Dublin',
-  'North Dublin',
-  'Monaghan',
-  'Cavan',
-  'Meath',
-  'Louth',
-  'Midlands',
-  'North Ireland',
-];
+const settings = getGeneralSettings();
+const contactSettings = getContactSettings();
+
+const phone = settings.phone;
+const phoneHref = formatPhoneHref(phone);
+const areas = contactSettings.serviceAreas;
 ---
 
 <section class="py-20 bg-background-light">

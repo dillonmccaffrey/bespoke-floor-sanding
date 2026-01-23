@@ -1,7 +1,13 @@
 ---
-const phone = '+353 87 402 7101';
-const email = 'info@bespokefloorsanding.ie';
-const emailHref = 'mailto:info@bespokefloorsanding.ie';
+import { getGeneralSettings, getHeroSettings, formatPhoneHref, formatEmailHref } from '../lib/content';
+
+const settings = getGeneralSettings();
+const heroSettings = getHeroSettings();
+
+const phone = settings.phone;
+const phoneHref = formatPhoneHref(phone);
+const email = settings.email;
+const emailHref = formatEmailHref(email);
 ---
 
 <section class="relative min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden">
@@ -16,7 +22,7 @@ const emailHref = 'mailto:info@bespokefloorsanding.ie';
     <!-- Badge -->
     <div class="inline-flex items-center gap-2 bg-background-lighter/50 border border-primary/30 rounded-full px-4 py-1.5 mb-8">
       <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-      <span class="text-sm text-text-muted">Trusted Experts Since 2010</span>
+      <span class="text-sm text-text-muted">{heroSettings.badge}</span>
     </div>
     
     <!-- Headline -->
@@ -28,7 +34,7 @@ const emailHref = 'mailto:info@bespokefloorsanding.ie';
     
     <!-- Subheadline -->
     <p class="text-base sm:text-lg md:text-xl text-text-muted max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2">
-      With unmatched quality, precision, and care, we restore the beauty of your wooden floors to perfection. Serving Dublin, Monaghan, Cavan, and Midlands Ireland.
+      {heroSettings.subheadline}
     </p>
     
     <!-- CTAs -->
@@ -37,7 +43,7 @@ const emailHref = 'mailto:info@bespokefloorsanding.ie';
       <a
         href="/contact"
         class="call-cta group flex items-center justify-center gap-2 sm:gap-3 bg-cta hover:bg-cta-hover text-background font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg transition-all hover:scale-105 shadow-lg shadow-primary/20 w-full sm:w-auto"
-        data-phone="tel:+353874027101"
+        data-phone={phoneHref}
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
           <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
@@ -61,7 +67,7 @@ const emailHref = 'mailto:info@bespokefloorsanding.ie';
     <!-- Phone number display -->
     <p class="text-text-muted text-sm sm:text-base">
       Or call directly: 
-      <a href="tel:+353874027101" class="text-primary hover:text-primary-light font-semibold transition-colors">
+      <a href={phoneHref} class="text-primary hover:text-primary-light font-semibold transition-colors">
         {phone}
       </a>
     </p>
