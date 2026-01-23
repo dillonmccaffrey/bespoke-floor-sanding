@@ -2,7 +2,7 @@
 title: Refinishing
 description: Premium finishes to protect and enhance your wooden floors.
 icon: finish
-image: /images/floor-varnishing-sealing-service.png
+image: /images/service-refinishing.png
 order: 3
 ---
 

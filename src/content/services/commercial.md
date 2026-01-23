@@ -2,7 +2,7 @@
 title: Commercial
 description: Professional floor sanding for offices, shops, and commercial spaces.
 icon: commercial
-image: /images/commercial-floor-service.png
+image: /images/service-commercial.png
 order: 4
 ---
 
