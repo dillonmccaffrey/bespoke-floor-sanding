@@ -16,7 +16,7 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const resendApiKey = import.meta.env.RESEND_API_KEY;
+    const resendApiKey = process.env.RESEND_API_KEY;
     if (!resendApiKey) {
       console.error('RESEND_API_KEY not configured');
       return new Response(
