@@ -74,10 +74,17 @@ app.post('/auth/logout', (req, res) => {
 
 // ============ CONTENT ENDPOINTS ============
 
+// Map collection names to directories/files
+function getCollectionPath(collection) {
+  if (collection === 'settings') return { dir: 'settings', file: 'general' };
+  if (collection === 'contact-settings') return { dir: 'settings', file: 'contact' };
+  return { dir: collection, file: null };
+}
+
 // List collections
 app.get('/collections', requireAuth, async (req, res) => {
   try {
-    const collections = ['testimonials', 'gallery', 'services', 'settings'];
+    const collections = ['testimonials', 'gallery', 'services', 'settings', 'contact-settings'];
     res.json(collections);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -88,7 +95,19 @@ app.get('/collections', requireAuth, async (req, res) => {
 app.get('/collections/:collection', requireAuth, async (req, res) => {
   try {
     const { collection } = req.params;
-    const collectionDir = path.join(CONTENT_DIR, collection);
+    const collectionInfo = getCollectionPath(collection);
+    const collectionDir = path.join(CONTENT_DIR, collectionInfo.dir);
+    
+    // For settings-type collections with a specific file, return just that entry
+    if (collectionInfo.file) {
+      try {
+        const filePath = path.join(collectionDir, `${collectionInfo.file}.json`);
+        const content = await fs.readFile(filePath, 'utf-8');
+        return res.json([{ slug: collectionInfo.file, file: `${collectionInfo.file}.json`, data: parseContent(content, `${collectionInfo.file}.json`) }]);
+      } catch {
+        return res.json([{ slug: collectionInfo.file, file: `${collectionInfo.file}.json`, data: {} }]);
+      }
+    }
     
     let files;
     try {
@@ -117,8 +136,10 @@ app.get('/collections/:collection', requireAuth, async (req, res) => {
 app.get('/collections/:collection/:slug', requireAuth, async (req, res) => {
   try {
     const { collection, slug } = req.params;
-    const { content, ext } = await readEntry(collection, slug);
-    res.json({ slug, data: parseContent(content, `${slug}${ext}`), raw: content });
+    const collectionInfo = getCollectionPath(collection);
+    const actualSlug = collectionInfo.file || slug;
+    const { content, ext } = await readEntry(collectionInfo.dir, actualSlug);
+    res.json({ slug: actualSlug, data: parseContent(content, `${actualSlug}${ext}`), raw: content });
   } catch (err) {
     res.status(404).json({ error: 'Entry not found' });
   }
@@ -129,12 +150,15 @@ app.post('/collections/:collection/:slug', requireAuth, async (req, res) => {
   try {
     const { collection, slug } = req.params;
     const { data } = req.body;
-    const collectionDir = path.join(CONTENT_DIR, collection);
+    const collectionInfo = getCollectionPath(collection);
+    const actualSlug = collectionInfo.file || slug;
+    const collectionDir = path.join(CONTENT_DIR, collectionInfo.dir);
     
     await fs.mkdir(collectionDir, { recursive: true });
     
-    const ext = collection === 'settings' ? '.json' : '.md';
-    const filePath = path.join(collectionDir, `${slug}${ext}`);
+    const isSettingsType = collection === 'settings' || collection === 'contact-settings';
+    const ext = isSettingsType ? '.json' : '.md';
+    const filePath = path.join(collectionDir, `${actualSlug}${ext}`);
     
     let content;
     if (ext === '.json') {
@@ -148,7 +172,7 @@ app.post('/collections/:collection/:slug', requireAuth, async (req, res) => {
     // Trigger rebuild
     triggerRebuild();
     
-    res.json({ success: true, slug });
+    res.json({ success: true, slug: actualSlug });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -158,7 +182,8 @@ app.post('/collections/:collection/:slug', requireAuth, async (req, res) => {
 app.delete('/collections/:collection/:slug', requireAuth, async (req, res) => {
   try {
     const { collection, slug } = req.params;
-    const collectionDir = path.join(CONTENT_DIR, collection);
+    const collectionInfo = getCollectionPath(collection);
+    const collectionDir = path.join(CONTENT_DIR, collectionInfo.dir);
     
     for (const ext of ['.md', '.json']) {
       try {

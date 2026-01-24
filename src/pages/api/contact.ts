@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import nodemailer from 'nodemailer';
+import { getContactSettings } from '../../lib/content';
 
 export const prerender = false;
 
@@ -18,7 +19,10 @@ export const POST: APIRoute = async ({ request }) => {
     const smtpHost = import.meta.env.SMTP_HOST || 'mailserver';
     const smtpPort = parseInt(import.meta.env.SMTP_PORT || '25');
     const smtpFrom = import.meta.env.SMTP_FROM || 'noreply@bespokefloorsanding.ie';
-    const contactEmail = import.meta.env.CONTACT_EMAIL || 'contact@bespokefloorsanding.ie';
+    
+    // Get notification email from CMS settings
+    const contactSettings = getContactSettings();
+    const contactEmail = contactSettings.notificationEmail || import.meta.env.CONTACT_EMAIL || 'contact@bespokefloorsanding.ie';
 
     // Log the submission
     console.log('=== New Contact Form Submission ===');

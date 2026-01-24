@@ -136,6 +136,7 @@ interface GeneralSettings {
 interface ContactSettings {
   title?: string;
   description?: string;
+  notificationEmail?: string;
   serviceAreas: string[];
 }
 
