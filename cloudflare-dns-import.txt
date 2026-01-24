@@ -1,0 +1,18 @@
+; Cloudflare DNS Import for bespokefloorsanding.ie
+; Import at: Cloudflare Dashboard → DNS → Records → Import and Export → Import DNS records
+
+; Mail server A record (MUST be DNS-only, not proxied)
+mail    IN  A       95.179.135.20
+
+; MX record for receiving replies
+@       IN  MX  10  mail.bespokefloorsanding.ie.
+
+; SPF record - authorizes your server to send email
+@       IN  TXT     "v=spf1 a mx ip4:95.179.135.20 ~all"
+
+; DMARC policy
+_dmarc  IN  TXT     "v=DMARC1; p=none; rua=mailto:dmarc@bespokefloorsanding.ie"
+
+; DKIM record - ADD MANUALLY AFTER DEPLOYMENT
+; Run: ./scripts/get-dkim-key.sh
+; Then add the output as a TXT record for: mail._domainkey

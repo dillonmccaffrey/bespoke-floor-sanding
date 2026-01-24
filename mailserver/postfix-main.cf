@@ -23,6 +23,14 @@ relayhost =
 mailbox_size_limit = 0
 recipient_delimiter = +
 
+# Allow relay from internal networks only
+smtpd_relay_restrictions = permit_mynetworks, reject_unauth_destination
+smtpd_recipient_restrictions = permit_mynetworks, reject_unauth_destination
+
+# Aliases (lmdb for Alpine)
+alias_maps = lmdb:/etc/postfix/aliases
+alias_database = lmdb:/etc/postfix/aliases
+
 # DKIM milter
 milter_protocol = 6
 milter_default_action = accept

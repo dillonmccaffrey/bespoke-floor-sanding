@@ -49,6 +49,10 @@ chown -R opendkim:opendkim /etc/opendkim
 postconf -e "myhostname=mail.$DOMAIN"
 postconf -e "mydomain=$DOMAIN"
 
+# Create aliases file (lmdb format for Alpine)
+touch /etc/postfix/aliases
+postalias lmdb:/etc/postfix/aliases
+
 # Fix permissions
 postfix set-permissions 2>/dev/null || true
 

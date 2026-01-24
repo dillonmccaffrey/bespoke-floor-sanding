@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://bespoke.dillonmccaffrey.dev',
+  site: 'https://bespokefloorsanding.ie',
   output: 'server',
   trailingSlash: 'ignore',
 

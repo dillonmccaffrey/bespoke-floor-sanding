@@ -11,8 +11,8 @@ This guide explains how to set up GitHub OAuth for the Decap CMS on your self-ho
    | Field | Value |
    |-------|-------|
    | **Application name** | Bespoke Floor Sanding CMS |
-   | **Homepage URL** | https://bespoke.dillonmccaffrey.dev |
-   | **Authorization callback URL** | https://bespoke.dillonmccaffrey.dev/oauth/callback |
+   | **Homepage URL** | https://bespokefloorsanding.ie |
+   | **Authorization callback URL** | https://bespokefloorsanding.ie/oauth/callback |
 
 4. Click **Register application**
 5. Copy the **Client ID**
@@ -30,7 +30,7 @@ cd ~/apps/bespoke-floor-sanding
 cat >> .env << 'EOF'
 GITHUB_CLIENT_ID=your-client-id-here
 GITHUB_CLIENT_SECRET=your-client-secret-here
-OAUTH_ORIGIN=https://bespoke.dillonmccaffrey.dev
+OAUTH_ORIGIN=https://bespokefloorsanding.ie
 EOF
 ```
 
@@ -40,7 +40,7 @@ Copy the updated nginx config:
 
 ```bash
 # On VPS
-sudo cp ~/apps/bespoke-floor-sanding/nginx.conf /etc/nginx/sites-available/bespoke.dillonmccaffrey.dev
+sudo cp ~/apps/bespoke-floor-sanding/nginx.conf /etc/nginx/sites-available/bespokefloorsanding.ie
 
 # Test and reload
 sudo nginx -t && sudo systemctl reload nginx
@@ -56,7 +56,7 @@ docker compose up -d --build
 
 ## Step 5: Test the Login
 
-1. Go to https://bespoke.dillonmccaffrey.dev/admin
+1. Go to https://bespokefloorsanding.ie/admin
 2. Click **Login with GitHub**
 3. Authorize the app
 4. You should see the CMS dashboard
@@ -76,7 +76,7 @@ For the business owner (Nygell) to access the CMS:
 ## Troubleshooting
 
 ### "OAuth error" on login
-- Verify the callback URL matches exactly: `https://bespoke.dillonmccaffrey.dev/oauth/callback`
+- Verify the callback URL matches exactly: `https://bespokefloorsanding.ie/oauth/callback`
 - Check the client ID and secret are correct in `.env`
 - Restart the oauth container: `docker compose restart oauth`
 
