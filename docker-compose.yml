@@ -6,7 +6,9 @@ services:
       - "4321:4321"
     environment:
       - NODE_ENV=production
-      - RESEND_API_KEY=${RESEND_API_KEY}
+      - SMTP_HOST=mailserver
+      - SMTP_PORT=25
+      - SMTP_FROM=noreply@bespokefloorsanding.ie
       - CONTACT_EMAIL=${CONTACT_EMAIL:-contact@bespokefloorsanding.ie}
       - UMAMI_WEBSITE_ID=${UMAMI_WEBSITE_ID}
       - UMAMI_URL=${UMAMI_URL}
@@ -15,7 +17,8 @@ services:
       - ./data/content:/data/content
       - ./data/images:/data/images
       - ./data/images:/app/dist/client/images
-
+    depends_on:
+      - mailserver
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://localhost:4321"]
       interval: 30s
@@ -37,6 +40,18 @@ services:
       - ./data/images:/data/images
     depends_on:
       - web
+
+  # Self-hosted mail server with DKIM
+  mailserver:
+    build: ./mailserver
+    restart: unless-stopped
+    environment:
+      - MAIL_DOMAIN=bespokefloorsanding.ie
+      - DKIM_SELECTOR=mail
+    volumes:
+      - dkim-keys:/etc/opendkim/keys
+    ports:
+      - "25:25"
 
   # Umami analytics (self-hosted)
   umami:
@@ -69,3 +84,4 @@ services:
 
 volumes:
   umami-db:
+  dkim-keys:

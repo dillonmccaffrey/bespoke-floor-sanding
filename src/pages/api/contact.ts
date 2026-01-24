@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
 export const prerender = false;
 
@@ -15,7 +15,9 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const resendApiKey = import.meta.env.RESEND_API_KEY;
+    const smtpHost = import.meta.env.SMTP_HOST || 'mailserver';
+    const smtpPort = parseInt(import.meta.env.SMTP_PORT || '25');
+    const smtpFrom = import.meta.env.SMTP_FROM || 'noreply@bespokefloorsanding.ie';
     const contactEmail = import.meta.env.CONTACT_EMAIL || 'contact@bespokefloorsanding.ie';
 
     // Log the submission
@@ -28,43 +30,70 @@ export const POST: APIRoute = async ({ request }) => {
     console.log(`Sending to: ${contactEmail}`);
     console.log('===================================');
 
-    if (!resendApiKey) {
-      console.error('RESEND_API_KEY not configured');
-      return new Response(
-        JSON.stringify({ error: 'Email service not configured' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
+    // Create transporter for internal mail server
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: false,
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
 
-    const resend = new Resend(resendApiKey);
-
-    const { data: emailData, error } = await resend.emails.send({
-      from: 'Bespoke Floor Sanding <onboarding@resend.dev>',
-      to: [contactEmail],
+    // Send email
+    await transporter.sendMail({
+      from: `"Bespoke Floor Sanding" <${smtpFrom}>`,
+      to: contactEmail,
       replyTo: email,
       subject: `New Quote Request from ${name}`,
+      text: `
+New Contact Form Submission
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+Location: ${location || 'Not specified'}
+
+Message:
+${message}
+
+---
+Reply directly to this email to respond to the customer.
+      `,
       html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-        <p><strong>Phone:</strong> ${phone ? `<a href="tel:${phone}">${phone}</a>` : 'Not provided'}</p>
-        <p><strong>Location:</strong> ${location || 'Not specified'}</p>
-        <h3>Message:</h3>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-        <hr>
-        <p style="color: #666; font-size: 12px;">This message was sent from the Bespoke Floor Sanding website contact form.</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #C4A052; border-bottom: 2px solid #C4A052; padding-bottom: 10px;">
+            New Quote Request
+          </h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold; width: 100px;">Name:</td>
+              <td style="padding: 8px 0;">${name}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold;">Email:</td>
+              <td style="padding: 8px 0;"><a href="mailto:${email}">${email}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold;">Phone:</td>
+              <td style="padding: 8px 0;">${phone ? `<a href="tel:${phone}">${phone}</a>` : 'Not provided'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; font-weight: bold;">Location:</td>
+              <td style="padding: 8px 0;">${location || 'Not specified'}</td>
+            </tr>
+          </table>
+          <h3 style="color: #333; margin-top: 20px;">Message:</h3>
+          <p style="background: #f5f5f5; padding: 15px; border-radius: 5px; white-space: pre-wrap;">${message}</p>
+          <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
+          <p style="color: #666; font-size: 12px;">
+            Reply directly to this email to respond to the customer.
+          </p>
+        </div>
       `,
     });
 
-    if (error) {
-      console.error('Resend error:', error);
-      return new Response(
-        JSON.stringify({ error: 'Failed to send email' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
-
-    console.log('Email sent successfully:', emailData?.id);
+    console.log('Email sent successfully');
 
     return new Response(
       JSON.stringify({ success: true, message: 'Thank you for your message!' }),
@@ -73,7 +102,7 @@ export const POST: APIRoute = async ({ request }) => {
   } catch (error) {
     console.error('Contact form error:', error);
     return new Response(
-      JSON.stringify({ error: 'Failed to process your request' }),
+      JSON.stringify({ error: 'Failed to send email. Please call us directly.' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
