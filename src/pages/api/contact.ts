@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import { getContactSettings } from '../../lib/content';
 
 export const prerender = false;
@@ -16,13 +16,18 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const smtpHost = import.meta.env.SMTP_HOST || 'mailserver';
-    const smtpPort = parseInt(import.meta.env.SMTP_PORT || '25');
-    const smtpFrom = import.meta.env.SMTP_FROM || 'noreply@bespokefloorsanding.ie';
-    
+    const resendApiKey = import.meta.env.RESEND_API_KEY;
+    if (!resendApiKey) {
+      console.error('RESEND_API_KEY not configured');
+      return new Response(
+        JSON.stringify({ error: 'Email service not configured. Please call us directly.' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
     // Get notification email from CMS settings
     const contactSettings = getContactSettings();
-    const contactEmail = contactSettings.notificationEmail || import.meta.env.CONTACT_EMAIL || 'contact@bespokefloorsanding.ie';
+    const contactEmail = contactSettings.notificationEmail || 'info@bespokefloorsanding.ie';
 
     // Log the submission
     console.log('=== New Contact Form Submission ===');
@@ -34,19 +39,11 @@ export const POST: APIRoute = async ({ request }) => {
     console.log(`Sending to: ${contactEmail}`);
     console.log('===================================');
 
-    // Create transporter for internal mail server
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: false,
-      tls: {
-        rejectUnauthorized: false
-      }
-    });
+    const resend = new Resend(resendApiKey);
 
-    // Send email
-    await transporter.sendMail({
-      from: `"Bespoke Floor Sanding" <${smtpFrom}>`,
+    // Send email via Resend
+    const { error } = await resend.emails.send({
+      from: 'Bespoke Floor Sanding <noreply@bespokefloorsanding.ie>',
       to: contactEmail,
       replyTo: email,
       subject: `New Quote Request from ${name}`,
@@ -97,7 +94,15 @@ Reply directly to this email to respond to the customer.
       `,
     });
 
-    console.log('Email sent successfully');
+    if (error) {
+      console.error('Resend error:', error);
+      return new Response(
+        JSON.stringify({ error: 'Failed to send email. Please call us directly.' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    console.log('Email sent successfully via Resend');
 
     return new Response(
       JSON.stringify({ success: true, message: 'Thank you for your message!' }),
