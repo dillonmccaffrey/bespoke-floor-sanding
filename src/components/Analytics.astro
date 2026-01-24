@@ -1,6 +1,6 @@
 ---
-const umamiWebsiteId = import.meta.env.UMAMI_WEBSITE_ID;
-const umamiUrl = import.meta.env.UMAMI_URL;
+const umamiWebsiteId = process.env.UMAMI_WEBSITE_ID;
+const umamiUrl = process.env.UMAMI_URL;
 ---
 
 {umamiWebsiteId && umamiUrl && (
