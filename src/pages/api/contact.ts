@@ -1,8 +1,9 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
-import { getContactSettings } from '../../lib/content';
 
 export const prerender = false;
+
+const CONTACT_EMAIL = 'contact@bespokefloorsanding.ie';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -25,10 +26,6 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    // Get notification email from CMS settings
-    const contactSettings = getContactSettings();
-    const contactEmail = contactSettings.notificationEmail || 'info@bespokefloorsanding.ie';
-
     // Log the submission
     console.log('=== New Contact Form Submission ===');
     console.log(`Name: ${name}`);
@@ -36,7 +33,7 @@ export const POST: APIRoute = async ({ request }) => {
     console.log(`Phone: ${phone || 'Not provided'}`);
     console.log(`Location: ${location || 'Not specified'}`);
     console.log(`Message: ${message}`);
-    console.log(`Sending to: ${contactEmail}`);
+    console.log(`Sending to: ${CONTACT_EMAIL}`);
     console.log('===================================');
 
     const resend = new Resend(resendApiKey);
@@ -44,7 +41,7 @@ export const POST: APIRoute = async ({ request }) => {
     // Send email via Resend
     const { error } = await resend.emails.send({
       from: 'Bespoke Floor Sanding <noreply@bespokefloorsanding.ie>',
-      to: contactEmail,
+      to: CONTACT_EMAIL,
       replyTo: email,
       subject: `New Quote Request from ${name}`,
       text: `

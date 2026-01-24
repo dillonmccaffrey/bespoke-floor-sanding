@@ -450,10 +450,7 @@
           <h3>⚙️ Settings</h3>
           <p>Site settings and contact info</p>
         </div>
-        <div class="collection-card" onclick="showCollection('contact-settings')">
-          <h3>📧 Contact Settings</h3>
-          <p>Contact form notification email</p>
-        </div>
+
       </div>
     </div>
   </div>
@@ -529,11 +526,7 @@
         { name: 'email', label: 'Email', type: 'text', required: true },
         { name: 'tagline', label: 'Tagline', type: 'text', required: false }
       ],
-      'contact-settings': [
-        { name: 'title', label: 'Page Title', type: 'text', required: false },
-        { name: 'description', label: 'Page Description', type: 'textarea', required: false },
-        { name: 'notificationEmail', label: 'Contact Form Notification Email', type: 'text', required: true }
-      ]
+
     };
     
     // Check auth on load

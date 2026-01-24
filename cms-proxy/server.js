@@ -77,14 +77,13 @@ app.post('/auth/logout', (req, res) => {
 // Map collection names to directories/files
 function getCollectionPath(collection) {
   if (collection === 'settings') return { dir: 'settings', file: 'general' };
-  if (collection === 'contact-settings') return { dir: 'settings', file: 'contact' };
   return { dir: collection, file: null };
 }
 
 // List collections
 app.get('/collections', requireAuth, async (req, res) => {
   try {
-    const collections = ['testimonials', 'gallery', 'services', 'settings', 'contact-settings'];
+    const collections = ['testimonials', 'gallery', 'services', 'settings'];
     res.json(collections);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -156,7 +155,7 @@ app.post('/collections/:collection/:slug', requireAuth, async (req, res) => {
     
     await fs.mkdir(collectionDir, { recursive: true });
     
-    const isSettingsType = collection === 'settings' || collection === 'contact-settings';
+    const isSettingsType = collection === 'settings';
     const ext = isSettingsType ? '.json' : '.md';
     const filePath = path.join(collectionDir, `${actualSlug}${ext}`);
     
