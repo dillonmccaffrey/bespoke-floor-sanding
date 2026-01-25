@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bespoke Floor Sanding - Setup Checklist</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #1a1a1a;
+      color: #f5f5f5;
+    }
+    h1 { color: #C4A052; margin-bottom: 10px; }
+    h2 { color: #C4A052; margin-top: 30px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+    .subtitle { color: #888; margin-bottom: 30px; }
+    .section { background: #2a2a2a; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+    .task { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid #333; }
+    .task:last-child { border-bottom: none; }
+    .task input[type="checkbox"] {
+      width: 20px; height: 20px; margin-top: 2px; accent-color: #C4A052; cursor: pointer;
+    }
+    .task label { cursor: pointer; flex: 1; }
+    .task.done label { text-decoration: line-through; color: #666; }
+    .note { font-size: 13px; color: #888; margin-top: 4px; }
+    .auto-tag {
+      background: #2d4a2d; color: #7cb87c; font-size: 11px; padding: 2px 6px;
+      border-radius: 4px; margin-left: 8px;
+    }
+    .manual-tag {
+      background: #4a3a2d; color: #c4a052; font-size: 11px; padding: 2px 6px;
+      border-radius: 4px; margin-left: 8px;
+    }
+    .input-field {
+      background: #1a1a1a; border: 1px solid #444; color: #f5f5f5;
+      padding: 8px; border-radius: 4px; width: 100%; margin-top: 8px;
+    }
+    .input-field:focus { border-color: #C4A052; outline: none; }
+    .progress-bar {
+      background: #333; height: 8px; border-radius: 4px; margin: 20px 0; overflow: hidden;
+    }
+    .progress-fill { background: #C4A052; height: 100%; transition: width 0.3s; }
+    .progress-text { text-align: center; color: #888; font-size: 14px; }
+    .export-btn {
+      background: #C4A052; color: #1a1a1a; border: none; padding: 12px 24px;
+      border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 20px;
+    }
+    .export-btn:hover { background: #d4b062; }
+    .output { background: #111; padding: 15px; border-radius: 6px; margin-top: 20px;
+      font-family: monospace; font-size: 13px; white-space: pre-wrap; display: none; }
+  </style>
+</head>
+<body>
+  <h1>🪵 Bespoke Floor Sanding</h1>
+  <p class="subtitle">Setup Checklist - Last updated: 25 Jan 2026</p>
+
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <p class="progress-text"><span id="completed">0</span> of <span id="total">0</span> tasks completed</p>
+
+  <h2>Google Setup</h2>
+  <div class="section">
+    <div class="task" data-auto="false">
+      <input type="checkbox" id="gbp-create">
+      <label for="gbp-create">
+        <strong>Create Google Business Profile</strong>
+        <span class="manual-tag">Manual</span>
+        <div class="note">Go to business.google.com → "Bespoke Floor Sanding Co."</div>
+      </label>
+    </div>
+    <div class="task" data-auto="false">
+      <input type="checkbox" id="gbp-verify">
+      <label for="gbp-verify">
+        <strong>Verify Google Business Profile</strong>
+        <span class="manual-tag">Manual</span>
+        <div class="note">Postcard, phone, or video verification</div>
+      </label>
+    </div>
+    <div class="task" data-auto="true">
+      <input type="checkbox" id="gsc-main">
+      <label for="gsc-main">
+        <strong>Add bespokefloorsanding.ie to Search Console</strong>
+        <span class="auto-tag">Can Automate</span>
+        <div class="note">Provide verification code or DNS access</div>
+        <input type="text" class="input-field" placeholder="Verification code (if you have it)" data-field="gsc-main-code">
+      </label>
+    </div>
+    <div class="task" data-auto="true">
+      <input type="checkbox" id="gsc-monaghan">
+      <label for="gsc-monaghan">
+        <strong>Add floorsandingmonaghan.ie to Search Console</strong>
+        <span class="auto-tag">Can Automate</span>
+      </label>
+    </div>
+    <div class="task" data-auto="true">
+      <input type="checkbox" id="gsc-cavan">
+      <label for="gsc-cavan">
+        <strong>Add floorsandingcavan.ie to Search Console</strong>
+        <span class="auto-tag">Can Automate</span>
+      </label>
+    </div>
+    <div class="task" data-auto="true">
+      <input type="checkbox" id="sitemap-submit">
+      <label for="sitemap-submit">
+        <strong>Submit sitemaps for all three sites</strong>
+        <span class="auto-tag">Can Automate</span>
+        <div class="note">Once Search Console is set up</div>
+      </label>
+    </div>
+  </div>
+
+  <h2>Analytics</h2>
+  <div class="section">
+    <div class="task" data-auto="true">
+      <input type="checkbox" id="umami-setup">
+      <label for="umami-setup">
+        <strong>Configure Umami analytics</strong>
+        <span class="auto-tag">Can Automate</span>
+        <div class="note">Dashboard at analytics.bespokefloorsanding.ie</div>
+        <input type="text" class="input-field" placeholder="Umami admin password (if changed from default)" data-field="umami-pass">
+      </label>
+    </div>
+    <div class="task" data-auto="true">
+      <input type="checkbox" id="umami-share">
+      <label for="umami-share">
+        <strong>Create shareable dashboard link for Nygell</strong>
+        <span class="auto-tag">Can Automate</span>
+      </label>
+    </div>
+  </div>
+
+  <h2>Email Setup</h2>
+  <div class="section">
+    <div class="task" data-auto="true">
+      <input type="checkbox" id="email-routing">
+      <label for="email-routing">
+        <strong>Set up email routing for info@bespokefloorsanding.ie</strong>
+        <span class="auto-tag">Can Automate</span>
+        <div class="note">Using Cloudflare Email Routing or Zoho Mail</div>
+        <input type="text" class="input-field" placeholder="Forward to email address" data-field="forward-email">
+      </label>
+    </div>
+    <div class="task" data-auto="false">
+      <input type="checkbox" id="email-test">
+      <label for="email-test">
+        <strong>Test contact form email delivery</strong>
+        <span class="manual-tag">Manual</span>
+        <div class="note">Submit test form on website, check inbox</div>
+      </label>
+    </div>
+  </div>
+
+  <h2>Social Media</h2>
+  <div class="section">
+    <div class="task" data-auto="false">
+      <input type="checkbox" id="fb-bio">
+      <label for="fb-bio">
+        <strong>Add website to Facebook page bio</strong>
+        <span class="manual-tag">Manual</span>
+        <div class="note">Edit Page Info → Website → bespokefloorsanding.ie</div>
+      </label>
+    </div>
+    <div class="task" data-auto="false">
+      <input type="checkbox" id="ig-bio">
+      <label for="ig-bio">
+        <strong>Add website to Instagram bio</strong>
+        <span class="manual-tag">Manual</span>
+        <div class="note">Edit Profile → Website</div>
+      </label>
+    </div>
+    <div class="task" data-auto="false">
+      <input type="checkbox" id="tt-bio">
+      <label for="tt-bio">
+        <strong>Add website to TikTok bio</strong>
+        <span class="manual-tag">Manual</span>
+        <div class="note">Requires Business Account for website field</div>
+      </label>
+    </div>
+  </div>
+
+  <h2>Business Listings</h2>
+  <div class="section">
+    <div class="task" data-auto="false">
+      <input type="checkbox" id="golden-pages" checked>
+      <label for="golden-pages">
+        <strong>Submit to Golden Pages</strong>
+        <span class="manual-tag">Done</span>
+      </label>
+    </div>
+    <div class="task" data-auto="false">
+      <input type="checkbox" id="yelp">
+      <label for="yelp">
+        <strong>Submit to Yelp Ireland</strong>
+        <span class="manual-tag">Manual</span>
+      </label>
+    </div>
+  </div>
+
+  <h2>Content from Nygell</h2>
+  <div class="section">
+    <div class="task" data-auto="false">
+      <input type="checkbox" id="photos">
+      <label for="photos">
+        <strong>Get real before/after photos</strong>
+        <span class="manual-tag">Manual</span>
+        <div class="note">5-10 before/after pairs, 10+ finished floor photos</div>
+      </label>
+    </div>
+    <div class="task" data-auto="false">
+      <input type="checkbox" id="testimonials">
+      <label for="testimonials">
+        <strong>Get real customer testimonials</strong>
+        <span class="manual-tag">Manual</span>
+        <div class="note">5+ testimonials with name and location</div>
+      </label>
+    </div>
+    <div class="task" data-auto="false">
+      <input type="checkbox" id="reviews">
+      <label for="reviews">
+        <strong>Request Google reviews from past customers</strong>
+        <span class="manual-tag">Manual</span>
+        <div class="note">Aim for 5-10 reviews to start</div>
+      </label>
+    </div>
+  </div>
+
+  <h2>Optional Enhancements</h2>
+  <div class="section">
+    <div class="task" data-auto="true">
+      <input type="checkbox" id="google-reviews-widget">
+      <label for="google-reviews-widget">
+        <strong>Add Google Reviews widget to website</strong>
+        <span class="auto-tag">Can Automate</span>
+        <div class="note">After Google Business Profile has reviews</div>
+      </label>
+    </div>
+    <div class="task" data-auto="true">
+      <input type="checkbox" id="clarity">
+      <label for="clarity">
+        <strong>Set up Microsoft Clarity for heatmaps</strong>
+        <span class="auto-tag">Can Automate</span>
+        <div class="note">Free heatmaps and session recordings</div>
+      </label>
+    </div>
+  </div>
+
+  <button class="export-btn" onclick="exportStatus()">📋 Export Status for Amp</button>
+  <div class="output" id="output"></div>
+
+  <script>
+    // Load saved state
+    const saved = localStorage.getItem('bfs-checklist');
+    if (saved) {
+      const state = JSON.parse(saved);
+      Object.keys(state.tasks).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.checked = state.tasks[id];
+      });
+      Object.keys(state.fields || {}).forEach(key => {
+        const el = document.querySelector(`[data-field="${key}"]`);
+        if (el) el.value = state.fields[key];
+      });
+    }
+
+    // Update progress and save state
+    function updateProgress() {
+      const tasks = document.querySelectorAll('.task input[type="checkbox"]');
+      const completed = [...tasks].filter(t => t.checked).length;
+      document.getElementById('completed').textContent = completed;
+      document.getElementById('total').textContent = tasks.length;
+      document.getElementById('progressFill').style.width = `${(completed / tasks.length) * 100}%`;
+
+      tasks.forEach(t => {
+        t.closest('.task').classList.toggle('done', t.checked);
+      });
+
+      // Save state
+      const state = { tasks: {}, fields: {} };
+      tasks.forEach(t => state.tasks[t.id] = t.checked);
+      document.querySelectorAll('.input-field').forEach(f => {
+        state.fields[f.dataset.field] = f.value;
+      });
+      localStorage.setItem('bfs-checklist', JSON.stringify(state));
+    }
+
+    document.querySelectorAll('.task input').forEach(el => {
+      el.addEventListener('change', updateProgress);
+    });
+    document.querySelectorAll('.input-field').forEach(el => {
+      el.addEventListener('input', updateProgress);
+    });
+    updateProgress();
+
+    function exportStatus() {
+      const tasks = document.querySelectorAll('.task');
+      let output = `# Bespoke Floor Sanding Checklist Status\n\n`;
+      output += `**Exported:** ${new Date().toISOString()}\n\n`;
+
+      let currentSection = '';
+      tasks.forEach(task => {
+        const section = task.closest('.section').previousElementSibling.textContent;
+        if (section !== currentSection) {
+          output += `\n## ${section}\n`;
+          currentSection = section;
+        }
+        const checkbox = task.querySelector('input[type="checkbox"]');
+        const label = task.querySelector('label strong').textContent;
+        const status = checkbox.checked ? '✅' : '⬜';
+        const canAuto = task.dataset.auto === 'true' ? ' [CAN AUTOMATE]' : '';
+        output += `${status} ${label}${canAuto}\n`;
+
+        const field = task.querySelector('.input-field');
+        if (field && field.value) {
+          output += `   → Input: ${field.value}\n`;
+        }
+      });
+
+      output += `\n---\nPaste this into Amp for context on what's done and what needs doing.`;
+
+      const outputEl = document.getElementById('output');
+      outputEl.textContent = output;
+      outputEl.style.display = 'block';
+
+      navigator.clipboard.writeText(output).then(() => {
+        alert('Copied to clipboard! Paste into Amp.');
+      });
+    }
+  </script>
+</body>
+</html>
