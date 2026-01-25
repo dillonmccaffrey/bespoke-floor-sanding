@@ -179,12 +179,25 @@ const pageDescription = contactSettings.description || 'Ready to transform your 
       });
       
       if (response.ok) {
+        // Track successful submission in Umami
+        if (typeof umami !== 'undefined') {
+          umami.track('contact-form-submit', {
+            location: data.location || 'not-specified'
+          });
+        }
         alert('Thank you! We will get back to you soon.');
         form.reset();
       } else {
+        // Track failed submission
+        if (typeof umami !== 'undefined') {
+          umami.track('contact-form-error');
+        }
         alert('Something went wrong. Please call us directly.');
       }
     } catch (error) {
+      if (typeof umami !== 'undefined') {
+        umami.track('contact-form-error');
+      }
       alert('Something went wrong. Please call us directly.');
     }
   });
