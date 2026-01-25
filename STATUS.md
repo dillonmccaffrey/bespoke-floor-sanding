@@ -1,17 +1,52 @@
 # Bespoke Floor Sanding - Project Status
 
-**Last Updated:** 2026-01-25
+**Last Updated:** 2026-01-25 20:07 UTC
 
 ## Project Overview
 
 Three interconnected sites for Nygell's floor sanding business:
-- **Main site:** bespokefloorsanding.ie
-- **Monaghan microsite:** floorsandingmonaghan.ie
-- **Cavan microsite:** floorsandingcavan.ie
+- **Main site:** https://bespokefloorsanding.ie ✅ LIVE
+- **Monaghan microsite:** https://floorsandingmonaghan.ie ✅ LIVE
+- **Cavan microsite:** https://floorsandingcavan.ie ✅ LIVE
 
-## Completed (24 Original User Stories ✅)
+---
 
-All original PRD user stories are complete:
+## Completed Today (25 Jan 2026)
+
+### ✅ Fixed & Committed
+- Fixed image media type mismatch (PNG files with .jpg extensions → converted to proper JPEG)
+- Committed 13 AI-generated images (hero, gallery, services)
+- Committed FAQ component with Schema.org markup
+- Committed 404 error page
+- Committed 3 new gallery projects
+
+### ✅ SEO Improvements
+- **Improved meta descriptions** on all 5 location pages with local keywords:
+  - Dublin: mentions Dublin City, North & South Dublin suburbs
+  - Monaghan: includes Castleblayney, Carrickmacross, Clones
+  - Cavan: includes Virginia, Bailieborough, Kingscourt
+  - Meath: mentions Navan, Trim, Ashbourne
+  - Midlands: covers Westmeath, Offaly, Laois, Longford
+
+### ✅ Microsite Enhancements
+Both floorsandingmonaghan.ie and floorsandingcavan.ie now have:
+- Expanded FAQ sections with Schema.org FAQPage markup (6 questions each)
+- 6 local testimonials covering all major towns
+- New "Local Areas" section with town-specific content
+- 404 error pages
+- Improved meta descriptions
+
+### ✅ Documentation Added
+- [docs/GOOGLE-REVIEWS-INTEGRATION.md](docs/GOOGLE-REVIEWS-INTEGRATION.md) - Complete guide for adding Google Reviews
+
+### ✅ Deployed to VPS
+- All three sites rebuilt and redeployed
+- All returning HTTP 200
+
+---
+
+## Completed Previously
+
 - Astro + Tailwind with dark/gold theme
 - Header, Hero, Services, Gallery, Testimonials, Service Areas, Footer
 - Contact form with Resend email integration
@@ -21,83 +56,51 @@ All original PRD user stories are complete:
 - Umami analytics with event tracking
 - Floating mobile call button
 - Owner and developer documentation
-
-## Additional Features Built (Not in Original PRD)
-
-- **Microsites:** Two satellite sites for local SEO (Monaghan, Cavan)
-- **FAQ sections:** Added to all three sites with Schema.org FAQPage markup
-- **404 pages:** Custom error pages for all sites
-- **Theme toggle:** Light/dark mode switch
-- **Real images:** Gallery, services, hero images generated/added
-- **Domain migration:** Switched from bespoke.dillonmccaffrey.dev to bespokefloorsanding.ie
-- **Physical address:** Added to LocalBusiness schema (Derryledigan, Scotstown, Monaghan)
-
-## Uncommitted Work in Progress
-
-```
-Modified:
-- src/pages/index.astro
-- src/pages/services.astro
-
-New files:
-- public/images/*.jpg (hero, gallery, service images)
-- src/components/FAQ.astro
-- src/pages/404.astro
-- src/content/gallery/project-4.md, project-5.md, project-6.md
-```
+- Microsites with local SEO focus
+- Theme toggle (light/dark mode)
 
 ---
 
 ## OUTSTANDING TASKS
 
-### Automated (Can be done by Amp)
-
-- [ ] Improve meta descriptions on remaining location pages
-- [ ] Add Google Reviews integration/widget
-- [ ] Generate more local content for microsites
-- [ ] Commit and push uncommitted work
+### Automated (Can do anytime)
+- [ ] Implement Google Reviews widget (see docs/GOOGLE-REVIEWS-INTEGRATION.md)
+- [ ] Generate additional local content pages (individual town pages)
+- [ ] Add more before/after gallery images when available
 
 ### Manual (Requires Dillon/Nygell)
 
-#### Deployment & DNS
-- [ ] Deploy latest changes to VPS (main site)
-- [ ] Deploy Monaghan microsite to VPS
-- [ ] Deploy Cavan microsite to VPS
-- [ ] Fix Cavan DNS - A records to 195.201.3.154
-- [ ] Get SSL certificate for Cavan site
-
-#### Email Setup
-- [ ] Set up Cloudflare Email Routing for contact@bespokefloorsanding.ie
-
-#### Analytics & Tracking
-- [ ] Configure Umami analytics (add website IDs)
-- [ ] Add all three sites to Umami dashboard
-- [ ] Set up Microsoft Clarity for heatmaps (optional)
-
-#### Google Setup
-- [ ] Create/Claim Google Business Profile
+#### Google & SEO Setup
+- [ ] Create/claim Google Business Profile for the business
 - [ ] Verify Google Business Profile
-- [ ] Add bespokefloorsanding.ie to Google Search Console
-- [ ] Add floorsandingmonaghan.ie to Search Console
-- [ ] Add floorsandingcavan.ie to Search Console
+- [ ] Add all three domains to Google Search Console
 - [ ] Submit sitemaps for all three sites
 - [ ] Request indexing for main pages
 
-#### Citations & Backlinks
+#### Analytics
+- [ ] Configure Umami with website IDs (dashboard at analytics.bespokefloorsanding.ie)
+- [ ] Share analytics dashboard with Nygell
+
+#### Email
+- [ ] Set up Cloudflare Email Routing for contact@bespokefloorsanding.ie
+- [ ] Test contact form email delivery
+
+#### Business Listings
 - [ ] Submit to Golden Pages (all sites)
 - [ ] Submit to Yelp Ireland
 - [ ] Create Facebook business page
 - [ ] Create Instagram profile
 - [ ] Request reviews from past customers
 
+#### Content
+- [ ] Get real before/after photos from Nygell
+- [ ] Get real customer testimonials
+
 ---
 
 ## Questions to Resolve
 
-1. Is the main site currently live and working at bespokefloorsanding.ie?
-2. Are the microsites deployed and accessible?
-3. Is the contact form receiving emails?
-4. Has Nygell tested the CMS at /admin?
-5. Are there any design feedback items from Nygell?
-6. Do we have real before/after photos from Nygell to replace placeholders?
-7. What's the priority: deployment, polish, or SEO/marketing tasks?
+1. Is the contact form receiving emails?
+2. Has Nygell tested the CMS at /admin?
+3. Any design feedback or change requests from Nygell?
+4. What's the priority: more SEO work, or getting real photos/testimonials?
