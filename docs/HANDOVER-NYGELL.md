@@ -96,29 +96,76 @@ Send them a message like:
 
 This is **critical** for appearing in Google Maps and local search results.
 
-### If Not Yet Created
+### Step 1: Check if Profile Exists
 1. Go to https://business.google.com
-2. Click "Manage now"
+2. Sign in with your Google account (or create one)
 3. Search for "Bespoke Floor Sanding Co."
-4. If not found, click "Add your business"
-5. Enter business details:
-   - **Name**: Bespoke Floor Sanding Co.
-   - **Category**: Floor Refinishing Service
-   - **Address**: Derryledigan, Scotstown, Co. Monaghan (or choose "I deliver to customers")
-   - **Phone**: +353 87 402 7101
-   - **Website**: https://bespokefloorsanding.ie
+4. If it exists, click "Claim this business"
+5. If not found, click "Add your business to Google"
 
-### Verification
-Google will verify you own the business via:
-- Postcard to your address (takes 1-2 weeks)
-- Phone call
-- Video verification (show your premises/van)
+### Step 2: Enter Business Details
+Fill in these exact details:
 
-### After Verification
-- Add photos of your work
-- Add business hours
-- Respond to any reviews
-- Post updates regularly
+| Field | Value |
+|-------|-------|
+| Business name | Bespoke Floor Sanding Co. |
+| Category | Floor Refinishing Service |
+| Do you serve customers at your business address? | No, I deliver to my customers |
+| Service areas | Monaghan, Cavan, Dublin, Meath, Louth, Midlands |
+| Phone | +353 87 402 7101 |
+| Website | https://bespokefloorsanding.ie |
+
+### Step 3: Verify Your Business
+
+Google needs to confirm you own the business. You'll see one of these options:
+
+**Option A: Video Verification (Fastest - often same day)**
+1. Google asks you to record a short video
+2. Show: your van with business name/logo, your equipment, yourself
+3. Speak your business name and address
+4. Upload the video
+5. Usually verified within 24 hours
+
+**Option B: Phone Verification**
+1. Google calls +353 87 402 7101
+2. An automated voice reads a verification code
+3. Enter the code on screen
+4. Instant verification
+
+**Option C: Postcard (Slowest - 1-2 weeks)**
+1. Google mails a postcard to your address
+2. Wait for it to arrive (5-14 days)
+3. Enter the code from the postcard online
+
+### Step 4: Complete Your Profile (After Verification)
+
+Once verified, add these to get more customers:
+
+1. **Photos** (Very Important!)
+   - Upload 10+ photos of your work
+   - Before/after photos work great
+   - Photo of you working
+   - Your van/equipment
+
+2. **Business Hours**
+   - Monday-Friday: 8am-6pm
+   - Saturday: 9am-2pm (or your actual hours)
+
+3. **Services**
+   - Floor Sanding
+   - Floor Restoration
+   - Wood Floor Refinishing
+   - Hardwood Floor Repair
+
+4. **Business Description**
+   > Professional floor sanding and restoration services in Dublin, Monaghan, Cavan, Meath, and the Midlands. Over 20 years experience restoring hardwood floors. Dust-free sanding, expert refinishing, and guaranteed workmanship. Call for a free quote.
+
+### Step 5: Get Your First Reviews
+After verification, get the review link:
+1. Go to your Business Profile dashboard
+2. Click "Get more reviews" or "Share review form"
+3. Copy the link
+4. Send to happy customers (see Section 5 below)
 
 ---
 
