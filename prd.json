@@ -402,6 +402,179 @@
       "priority": 24,
       "passes": true,
       "notes": "docs/DEVELOPER.md created"
+    },
+    {
+      "id": "US-025",
+      "title": "Create Monaghan microsite",
+      "description": "Build a satellite site at floorsandingmonaghan.ie targeting Monaghan and surrounding areas for local SEO.",
+      "acceptanceCriteria": [
+        "Standalone Astro site at floorsandingmonaghan.ie",
+        "Targets Monaghan, Clones, Castleblayney, Carrickmacross areas",
+        "Links back to main site",
+        "FAQ section with Schema.org FAQPage markup",
+        "Custom 404 page",
+        "Gallery section with local project images",
+        "Dockerized for deployment"
+      ],
+      "priority": 25,
+      "passes": true,
+      "notes": "Microsite complete at /home/dillon/projects/monaghan-floor-sanding"
+    },
+    {
+      "id": "US-026",
+      "title": "Create Cavan microsite",
+      "description": "Build a satellite site at floorsandingcavan.ie targeting Cavan and surrounding areas for local SEO.",
+      "acceptanceCriteria": [
+        "Standalone Astro site at floorsandingcavan.ie",
+        "Targets Cavan, Virginia, Bailieborough, Kingscourt areas",
+        "Links back to main site",
+        "FAQ section with Schema.org FAQPage markup",
+        "Custom 404 page",
+        "Gallery section with local project images",
+        "Dockerized for deployment"
+      ],
+      "priority": 26,
+      "passes": true,
+      "notes": "Microsite complete at /home/dillon/projects/cavan-floor-sanding"
+    },
+    {
+      "id": "US-027",
+      "title": "Add FAQ sections with schema markup",
+      "description": "Add FAQ sections to all three sites with Schema.org FAQPage structured data.",
+      "acceptanceCriteria": [
+        "FAQ component created",
+        "Added to main site homepage",
+        "Added to both microsites",
+        "Schema.org FAQPage JSON-LD on each page",
+        "Common floor sanding questions covered"
+      ],
+      "priority": 27,
+      "passes": true,
+      "notes": "FAQ.astro component created"
+    },
+    {
+      "id": "US-028",
+      "title": "Add custom 404 pages",
+      "description": "Create custom 404 error pages for all three sites.",
+      "acceptanceCriteria": [
+        "404 page matches site design",
+        "Clear messaging and navigation back to home",
+        "Added to main site and both microsites"
+      ],
+      "priority": 28,
+      "passes": true,
+      "notes": "404.astro created for all sites"
+    },
+    {
+      "id": "US-029",
+      "title": "Domain migration to bespokefloorsanding.ie",
+      "description": "Migrate the main site from bespoke.dillonmccaffrey.dev to bespokefloorsanding.ie.",
+      "acceptanceCriteria": [
+        "astro.config.mjs updated with new domain",
+        "nginx.conf updated with new server_name",
+        "SSL certificates issued for new domain",
+        "All documentation updated"
+      ],
+      "priority": 29,
+      "passes": true,
+      "notes": "Domain migrated successfully"
+    },
+    {
+      "id": "US-030",
+      "title": "Add theme toggle (light/dark mode)",
+      "description": "Implement a light/dark mode toggle for the main site.",
+      "acceptanceCriteria": [
+        "Toggle switch in header",
+        "Persists preference in localStorage",
+        "Works on mobile and after navigation",
+        "Proper contrast in both modes"
+      ],
+      "priority": 30,
+      "passes": true,
+      "notes": "Theme toggle with sliding switch"
+    },
+    {
+      "id": "US-031",
+      "title": "Generate and add real images",
+      "description": "Add high-quality images for hero, gallery, and services sections.",
+      "acceptanceCriteria": [
+        "Hero banner image",
+        "Gallery project images (before/after)",
+        "Service category images",
+        "Images optimized for web"
+      ],
+      "priority": 31,
+      "passes": false,
+      "notes": "Images generated but not committed"
+    },
+    {
+      "id": "US-032",
+      "title": "Deploy all sites to VPS",
+      "description": "Deploy main site and both microsites to the production VPS.",
+      "acceptanceCriteria": [
+        "Main site live at bespokefloorsanding.ie",
+        "Monaghan site live at floorsandingmonaghan.ie",
+        "Cavan site live at floorsandingcavan.ie",
+        "SSL working on all sites",
+        "Contact form sending emails"
+      ],
+      "priority": 32,
+      "passes": false,
+      "notes": "Pending deployment"
+    },
+    {
+      "id": "US-033",
+      "title": "Set up Google Business Profile",
+      "description": "Create and verify Google Business Profile for local search visibility.",
+      "acceptanceCriteria": [
+        "Business profile created",
+        "Profile verified",
+        "All three sites linked",
+        "Service areas defined"
+      ],
+      "priority": 33,
+      "passes": false,
+      "notes": "Manual task - not started"
+    },
+    {
+      "id": "US-034",
+      "title": "Set up Google Search Console",
+      "description": "Add all three sites to Google Search Console and submit sitemaps.",
+      "acceptanceCriteria": [
+        "All three domains verified",
+        "Sitemaps submitted",
+        "Initial indexing requested"
+      ],
+      "priority": 34,
+      "passes": false,
+      "notes": "Manual task - not started"
+    },
+    {
+      "id": "US-035",
+      "title": "Set up Umami analytics",
+      "description": "Configure Umami analytics for all three sites.",
+      "acceptanceCriteria": [
+        "Umami instance running",
+        "All three sites added",
+        "Environment variables configured",
+        "CTA tracking verified"
+      ],
+      "priority": 35,
+      "passes": false,
+      "notes": "Script in place, needs configuration"
+    },
+    {
+      "id": "US-036",
+      "title": "Add real before/after photos from Nygell",
+      "description": "Replace placeholder/generated images with real photos from Nygell's completed projects.",
+      "acceptanceCriteria": [
+        "Real before/after project photos obtained",
+        "Added to gallery with proper metadata",
+        "Attributed to correct locations"
+      ],
+      "priority": 36,
+      "passes": false,
+      "notes": "Waiting on photos from Nygell"
     }
   ]
 }
