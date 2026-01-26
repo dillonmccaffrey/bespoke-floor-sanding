@@ -1,6 +1,6 @@
 # Bespoke Floor Sanding - Project Status
 
-**Last Updated:** 2026-01-25 20:07 UTC
+**Last Updated:** 2026-01-26 13:00 UTC
 
 ## Project Overview
 
@@ -11,7 +11,25 @@ Three interconnected sites for Nygell's floor sanding business:
 
 ---
 
-## Completed Today (25 Jan 2026)
+## Completed Today (26 Jan 2026)
+
+### ✅ Google Search Console
+- All 3 domains added and verified via API automation
+- Sitemaps submitted for all 3 sites
+- OAuth credentials set up for ongoing API access
+
+### ✅ Amp Automation Infrastructure
+- Google OAuth app created (reusable for future projects)
+- MCP servers configured: Cloudflare Docs, Cloudflare Bindings, Playwright, Google Search Console
+- Scripts created for domain verification and sitemap submission
+
+### ✅ Email Routing
+- Cloudflare Email Routing configured: `contact@bespokefloorsanding.ie` → `bespokesanding83@gmail.com`
+- Awaiting Nygell's email verification (added to handover checklist)
+
+---
+
+## Completed Yesterday (25 Jan 2026)
 
 ### ✅ Fixed & Committed
 - Fixed image media type mismatch (PNG files with .jpg extensions → converted to proper JPEG)
@@ -73,17 +91,18 @@ Both floorsandingmonaghan.ie and floorsandingcavan.ie now have:
 #### Google & SEO Setup
 - [ ] Create/claim Google Business Profile for the business
 - [ ] Verify Google Business Profile
-- [ ] Add all three domains to Google Search Console
-- [ ] Submit sitemaps for all three sites
-- [ ] Request indexing for main pages
+- [x] ~~Add all three domains to Google Search Console~~ ✅ Done via API
+- [x] ~~Submit sitemaps for all three sites~~ ✅ Done via API
+- [ ] Request indexing for main pages (optional - Google will crawl naturally)
 
 #### Analytics
-- [ ] Configure Umami with website IDs (dashboard at analytics.bespokefloorsanding.ie)
-- [ ] Share analytics dashboard with Nygell
+- [x] ~~Configure Umami with website IDs~~ ✅ Done (ID: 0d04802d-3eb9-4704-bcdf-15eb578c9f72)
+- [x] ~~Share analytics dashboard with Nygell~~ ✅ https://analytics.bespokefloorsanding.ie/share/NOEjsPmCfl06517R
 
 #### Email
-- [ ] Set up Cloudflare Email Routing for contact@bespokefloorsanding.ie
-- [ ] Test contact form email delivery
+- [x] ~~Set up Cloudflare Email Routing for contact@bespokefloorsanding.ie~~ ✅ Configured
+- [ ] Nygell: Verify destination email (check Gmail for Cloudflare verification)
+- [ ] Test contact form email delivery (after verification)
 
 #### Business Listings
 - [ ] Submit to Golden Pages (all sites)

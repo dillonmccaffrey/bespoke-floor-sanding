@@ -183,6 +183,64 @@ Once Google Business Profile is verified:
 
 ---
 
+## 6. Verify Email Routing (5 minutes)
+
+The contact form on the website sends emails to `bespokesanding83@gmail.com`. Cloudflare needs to verify this email before it works.
+
+### Steps:
+1. **Check your Gmail** (`bespokesanding83@gmail.com`) for an email from Cloudflare
+2. Subject line: "Verify your email address for Cloudflare Email Routing"
+3. **Click the verification link** in the email
+4. Done! Contact form submissions will now arrive in your Gmail
+
+**If you can't find the email:**
+- Check your Spam/Junk folder
+- Contact Dillon to resend the verification
+
+### Test the Contact Form:
+1. Go to https://bespokefloorsanding.ie/contact
+2. Fill out the form with test details
+3. Submit
+4. Check your Gmail - you should receive the submission within a minute
+
+---
+
+## 7. Test the CMS (Content Management)
+
+You can edit testimonials, gallery, and services yourself:
+
+1. Go to https://bespokefloorsanding.ie/admin
+2. Sign in with your GitHub account
+3. Try editing a testimonial or adding a gallery image
+4. Changes go live after you click "Publish"
+
+---
+
+## 8. View Your Website Analytics (Bookmark This!)
+
+See how many people visit your website and how many contact you:
+
+**👉 https://analytics.bespokefloorsanding.ie/share/NOEjsPmCfl06517R**
+
+### What You'll See
+
+| Metric | What It Means |
+|--------|---------------|
+| **Visitors** | People who looked at your website |
+| **Page Views** | Total pages viewed (one person might view multiple pages) |
+| **contact-form-submit** | Someone sent you a message through the contact form |
+
+### Tips
+- Check it weekly to see how your website is performing
+- More visitors after posting on social media = your marketing is working!
+- If you're getting visitors but no contact forms, people might need more convincing (add testimonials, photos)
+
+### The Two Numbers That Matter Most
+1. **Visitors** - Are people finding your website?
+2. **contact-form-submit events** - Are they contacting you?
+
+---
+
 ## Questions?
 
 Contact Dillon for any help with the website or this guide.
