@@ -11,57 +11,57 @@
 ## 1. SEO Basics (Check & Fix)
 
 ### Favicon
-- [ ] Check favicon exists on both microsites
-- [ ] Ensure apple-touch-icon, favicon-32x32, favicon-16x16
-- [ ] Add site.webmanifest
+- [x] Check favicon exists on both microsites
+- [x] Ensure apple-touch-icon, favicon-32x32, favicon-16x16
+- [x] Add site.webmanifest
 
 ### Meta Tags
-- [ ] Verify title tags are unique and keyword-rich
-- [ ] Verify meta descriptions are compelling with local keywords
-- [ ] Add Open Graph tags (og:title, og:description, og:image)
-- [ ] Add Twitter Card tags
+- [x] Verify title tags are unique and keyword-rich
+- [x] Verify meta descriptions are compelling with local keywords
+- [x] Add Open Graph tags (og:title, og:description, og:image)
+- [x] Add Twitter Card tags
 
 ### Structured Data
 - [x] FAQPage schema (already done)
-- [ ] LocalBusiness schema with Monaghan/Cavan address
-- [ ] Review/AggregateRating schema
+- [x] LocalBusiness schema with Monaghan/Cavan address
+- [x] Review/AggregateRating schema
 
 ### Technical SEO
-- [ ] Ensure sitemap.xml exists and is valid
-- [ ] Ensure robots.txt allows crawling
-- [ ] Check canonical URLs are set correctly
-- [ ] Verify mobile-friendly (already Tailwind, should be fine)
+- [x] Ensure sitemap.xml exists and is valid
+- [x] Ensure robots.txt allows crawling
+- [x] Check canonical URLs are set correctly
+- [x] Verify mobile-friendly (already Tailwind, should be fine)
 
 ---
 
 ## 2. Conversion Optimization
 
 ### CTAs to Call Nygell
-- [ ] Floating call button on mobile (like main site)
-- [ ] Prominent phone number in header
-- [ ] "Call Now" buttons throughout page
-- [ ] Click-to-call tracking with Umami events
+- [x] Floating call button on mobile (like main site)
+- [x] Prominent phone number in header
+- [x] "Call Now" buttons throughout page
+- [x] Click-to-call tracking with Umami events
 
 ### Links to Main Site
-- [ ] "View Full Gallery" → bespokefloorsanding.ie/gallery
-- [ ] "All Services" → bespokefloorsanding.ie/services
-- [ ] "Other Locations" → bespokefloorsanding.ie with area links
-- [ ] Footer link to main site
+- [x] "View Full Gallery" → bespokefloorsanding.ie/gallery
+- [x] "All Services" → bespokefloorsanding.ie/services
+- [x] "Other Locations" → bespokefloorsanding.ie with area links
+- [x] Footer link to main site
 
 ---
 
 ## 3. Umami Analytics
 
 ### Setup
-- [ ] Add Umami script to both microsites
-- [ ] Create website entries in Umami dashboard:
-  - floorsandingmonaghan.ie
-  - floorsandingcavan.ie
-- [ ] Get Website IDs
+- [x] Add Umami script to both microsites
+- [x] Create website entries in Umami dashboard:
+  - floorsandingmonaghan.ie (ID: d23ff6dc-cf11-4751-9e45-71dbbf373cad)
+  - floorsandingcavan.ie (ID: 554fe327-76c5-42d4-a614-7e840f7c526b)
+- [x] Get Website IDs
 
 ### Event Tracking
-- [ ] Track phone clicks: `data-umami-event="call-click"`
-- [ ] Track main site clicks: `data-umami-event="main-site-click"`
+- [x] Track phone clicks: `data-umami-event="call-click"`
+- [x] Track main site clicks: `data-umami-event="main-site-click"`
 - [ ] Track form submissions (if contact form added)
 
 ### Share URLs
@@ -72,13 +72,13 @@
 ## 4. Content Improvements
 
 ### Local SEO Content
-- [ ] Ensure all town names mentioned (Clones, Castleblayney, Carrickmacross, Virginia, Bailieborough, etc.)
-- [ ] Add "Serving [Town]" sections if not present
-- [ ] Local testimonials with town names (already done)
+- [x] Ensure all town names mentioned (Clones, Castleblayney, Carrickmacross, Virginia, Bailieborough, etc.)
+- [x] Add "Serving [Town]" sections if not present
+- [x] Local testimonials with town names (already done)
 
 ### Images
-- [ ] Verify all images have descriptive alt text with location keywords
-- [ ] Ensure hero image is optimized for web
+- [x] Verify all images have descriptive alt text with location keywords
+- [x] Ensure hero image is optimized for web
 
 ---
 
