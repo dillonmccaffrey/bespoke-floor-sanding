@@ -19,6 +19,14 @@ const services = [
   'Refinishing',
   'Commercial Services',
 ];
+
+// Microsite links for locations with dedicated sites
+const micrositeLinks: Record<string, string> = {
+  'Monaghan': 'https://floorsandingmonaghan.ie',
+  'Cavan': 'https://floorsandingcavan.ie',
+};
+
+const hasMicrosite = location in micrositeLinks;
 ---
 
 <Layout title={`Floor Sanding in ${location}`} description={description || defaultDescription}>
@@ -86,6 +94,28 @@ const services = [
     </div>
   </section>
   
+  <!-- Microsite Link (if available) -->
+  {hasMicrosite && (
+    <section class="py-12 bg-primary/10 border-y border-primary/20">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-text mb-4">
+          Looking for more details about our services in County {location}?
+        </p>
+        <a
+          href={micrositeLinks[location]}
+          class="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold text-lg transition-colors"
+          target="_blank"
+          rel="noopener"
+        >
+          Visit our dedicated {location} site
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </section>
+  )}
+
   <!-- CTA -->
   <section class="py-16 bg-background-light">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
