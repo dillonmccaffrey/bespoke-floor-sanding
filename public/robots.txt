@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bespokefloorsanding.ie/sitemap-index.xml

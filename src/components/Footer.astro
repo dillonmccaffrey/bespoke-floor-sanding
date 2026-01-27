@@ -1,0 +1,105 @@
+---
+import { getGeneralSettings, getContactSettings, formatPhoneHref, formatEmailHref } from '../lib/content';
+
+const settings = getGeneralSettings();
+const contactSettings = getContactSettings();
+
+const phone = settings.phone;
+const phoneHref = formatPhoneHref(phone);
+const email = settings.email;
+const emailHref = formatEmailHref(email);
+const businessName = settings.businessName;
+
+const quickLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const serviceAreas = contactSettings.serviceAreas.slice(0, 6); // Show first 6 areas
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-background-light border-t border-background-lighter">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Brand -->
+      <div class="lg:col-span-1">
+        <a href="/" class="text-xl font-bold text-primary mb-4 block">
+          {businessName}
+        </a>
+        <p class="text-text-muted text-sm mb-4">
+          Premium floor sanding and restoration services across Ireland.
+        </p>
+      </div>
+      
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-text font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          {quickLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-text-muted hover:text-primary transition-colors text-sm">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <!-- Service Areas -->
+      <div>
+        <h3 class="text-text font-semibold mb-4">Service Areas</h3>
+        <ul class="space-y-2">
+          {serviceAreas.map((area) => (
+            <li class="text-text-muted text-sm">{area}</li>
+          ))}
+        </ul>
+      </div>
+      
+      <!-- Contact -->
+      <div>
+        <h3 class="text-text font-semibold mb-4">Contact Us</h3>
+        <ul class="space-y-3">
+          <li>
+            <a href={phoneHref} class="flex items-center gap-2 text-primary hover:text-primary-light transition-colors font-semibold">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+              </svg>
+              <span>{phone}</span>
+            </a>
+          </li>
+          <li>
+            <a href={emailHref} class="flex items-center gap-2 text-text-muted hover:text-primary transition-colors text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+              <span>{email}</span>
+            </a>
+          </li>
+        </ul>
+        
+        <!-- CTA Button -->
+        <a
+          href={phoneHref}
+          class="inline-flex items-center gap-2 bg-cta hover:bg-cta-hover text-background font-semibold px-5 py-2.5 rounded-lg transition-all mt-4 text-sm"
+        >
+          <span>Get Free Quote</span>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Bottom Bar -->
+    <div class="border-t border-background-lighter mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="text-text-muted text-sm">
+        © {currentYear} {businessName}. All rights reserved.
+      </p>
+      <p class="text-text-muted text-sm">
+        Serving Dublin, Midlands & North Ireland
+      </p>
+    </div>
+  </div>
+</footer>

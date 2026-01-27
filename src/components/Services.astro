@@ -1,0 +1,52 @@
+---
+import { getServices, getGeneralSettings, formatPhoneHref } from '../lib/content';
+
+const settings = getGeneralSettings();
+const phoneHref = formatPhoneHref(settings.phone);
+const services = getServices();
+---
+
+<section class="py-20 bg-background">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold text-text mb-4">Our Services</h2>
+      <p class="text-lg text-text-muted max-w-2xl mx-auto">
+        Professional floor sanding and restoration services for residential and commercial properties.
+      </p>
+    </div>
+    
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      {services.map((service) => (
+        <div class="group bg-background-light hover:bg-background-lighter border border-background-lighter rounded-xl overflow-hidden transition-all hover:border-primary/30">
+          <!-- Image -->
+          {service.image && (
+            <div class="aspect-[4/3] overflow-hidden">
+              <img src={service.image} alt={service.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            </div>
+          )}
+          
+          <!-- Content -->
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-text mb-2">{service.title}</h3>
+            <p class="text-text-muted text-sm leading-relaxed">{service.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- CTA -->
+    <div class="text-center">
+      <a
+        href={phoneHref}
+        class="inline-flex items-center gap-2 bg-cta hover:bg-cta-hover text-background font-semibold px-8 py-4 rounded-lg text-lg transition-all hover:scale-105"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+        </svg>
+        <span>Call to Discuss Your Project</span>
+      </a>
+    </div>
+  </div>
+</section>

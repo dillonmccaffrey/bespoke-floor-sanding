@@ -1,0 +1,39 @@
+# Ralph Progress Log
+Started: Thu Jan 22 2026
+Project: Bespoke Floor Sanding Website
+
+## Codebase Patterns
+- Tailwind v4 uses `@theme` in CSS for custom colors (not tailwind.config.js)
+- Import global.css in Layout.astro for styles to work
+- Use `bg-background`, `text-text`, `bg-cta` etc. for theme colors
+
+---
+
+## 2026-01-22 16:59 - US-002
+- **Implemented**: Responsive header with sticky CTA
+- **Files created/modified**:
+  - src/components/Header.astro (new - navigation + mobile menu)
+  - src/layouts/Layout.astro (added Header, wrapped slot in main)
+  - src/pages/index.astro (adjusted height for header)
+- **Features**:
+  - Fixed header with backdrop blur
+  - Logo links to home
+  - Desktop nav: Home, Services, Gallery, Contact
+  - Sticky gold "Call Now" button with phone icon
+  - Mobile hamburger menu with slide-down nav
+  - Click-to-call on all phone links
+
+---
+
+## 2026-01-22 16:41 - US-001
+- **Implemented**: Astro project with Tailwind CSS and color scheme
+- **Files created**:
+  - src/styles/global.css (Tailwind + color theme)
+  - src/layouts/Layout.astro (base layout)
+  - src/pages/index.astro (placeholder homepage)
+- **Learnings**:
+  - Tailwind v4 uses CSS-based config with `@theme` directive
+  - Colors defined as CSS custom properties
+  - Build passes successfully
+
+---

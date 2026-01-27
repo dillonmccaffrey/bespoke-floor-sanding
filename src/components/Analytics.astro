@@ -1,0 +1,60 @@
+---
+const umamiWebsiteId = process.env.UMAMI_WEBSITE_ID;
+const umamiUrl = process.env.UMAMI_URL;
+---
+
+{umamiWebsiteId && umamiUrl && (
+  <script
+    defer
+    src={`${umamiUrl}/script.js`}
+    data-website-id={umamiWebsiteId}
+  />
+)}
+
+<script>
+  // Helper function to track Umami events
+  declare global {
+    interface Window {
+      umami?: {
+        track: (event: string, data?: Record<string, unknown>) => void;
+      };
+    }
+  }
+
+  // Track CTA clicks
+  document.addEventListener('DOMContentLoaded', () => {
+    // Track all phone call clicks
+    document.querySelectorAll('a[href^="tel:"]').forEach((el) => {
+      el.addEventListener('click', () => {
+        window.umami?.track('cta-call');
+      });
+    });
+
+    // Track all email clicks
+    document.querySelectorAll('a[href^="mailto:"]').forEach((el) => {
+      el.addEventListener('click', () => {
+        window.umami?.track('cta-email');
+      });
+    });
+
+    // Track contact form submissions
+    const contactForm = document.getElementById('contact-form');
+    contactForm?.addEventListener('submit', () => {
+      window.umami?.track('form-submit');
+    });
+
+    // Track gallery views (if gallery section is visible)
+    const gallerySection = document.querySelector('[data-section="gallery"]');
+    if (gallerySection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            window.umami?.track('gallery-view');
+            observer.disconnect();
+          }
+        });
+      });
+      observer.observe(gallerySection);
+    }
+  });
+</script>

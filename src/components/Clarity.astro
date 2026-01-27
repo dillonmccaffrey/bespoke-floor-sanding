@@ -1,0 +1,24 @@
+---
+// Microsoft Clarity heatmap and session recording
+// Get your project ID from https://clarity.microsoft.com:
+// 1. Sign up/login at clarity.microsoft.com
+// 2. Create a new project for your website
+// 3. Go to Settings -> Overview to find your Project ID
+
+interface Props {
+  projectId: string;
+}
+
+const { projectId } = Astro.props;
+const isProd = import.meta.env.PROD;
+---
+
+{isProd && projectId && (
+  <script is:inline define:vars={{ projectId }}>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", projectId);
+  </script>
+)}

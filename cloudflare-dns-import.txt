@@ -1,0 +1,14 @@
+;;
+;; Domain: bespokefloorsanding.ie
+;; Cloudflare DNS Import File
+;; 
+;; Import this file in Cloudflare Dashboard:
+;; DNS > Records > Import and Export > Import DNS records
+;;
+
+;; A Records - Main site
+bespokefloorsanding.ie.    1    IN    A    195.201.3.154
+www.bespokefloorsanding.ie.    1    IN    CNAME    bespokefloorsanding.ie.
+
+;; TXT Records - Domain verification
+bespokefloorsanding.ie.    3600    IN    TXT    "google-site-verification=IY92iW5We1ReMlDFDwdDeaZh6aM1c4reo-kuq7bibqo"

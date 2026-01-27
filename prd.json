@@ -1,0 +1,580 @@
+{
+  "project": "Bespoke Floor Sanding Website",
+  "branchName": "ralph/bespoke-floor-sanding",
+  "description": "A premium, SEO-focused website for Bespoke Floor Sanding Co. with strong CTAs to call/email, client-editable content via Decap CMS, before/after gallery, location pages for local SEO, Umami analytics, and contact form with email sending.",
+  "contactInfo": {
+    "businessName": "Bespoke Floor Sanding Co.",
+    "owner": "Nygell",
+    "phone": "+353 87 402 7101",
+    "email": "info@bespokefloorsanding.ie",
+    "serviceAreas": [
+      "Dublin",
+      "Monaghan",
+      "Cavan",
+      "Meath",
+      "Louth",
+      "Midlands",
+      "North Ireland"
+    ]
+  },
+  "colorScheme": {
+    "primary": "#C4A052",
+    "background": "#1A1A1A",
+    "backgroundLight": "#2A2A2A",
+    "text": "#F5F5F5",
+    "textMuted": "#B0B0B0",
+    "accent": "#E8DCC4",
+    "cta": "#C4A052"
+  },
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Initialize Astro project with Tailwind CSS",
+      "description": "Set up a new Astro project with Tailwind CSS configured using the dark/gold color scheme defined in the PRD.",
+      "acceptanceCriteria": [
+        "Astro project created with TypeScript",
+        "Tailwind CSS installed and configured",
+        "Color scheme variables defined in tailwind.config.mjs",
+        "Base layout component created with dark background",
+        "Project builds without errors"
+      ],
+      "priority": 1,
+      "passes": true,
+      "notes": "Completed: Astro + Tailwind v4 with color scheme"
+    },
+    {
+      "id": "US-002",
+      "title": "Create responsive header with sticky CTA",
+      "description": "Build a responsive navigation header with logo, nav links, and a prominent sticky call button that stays visible on scroll.",
+      "acceptanceCriteria": [
+        "Header with logo 'Bespoke Floor Sanding Co.'",
+        "Nav links: Home, Services, Gallery, Contact",
+        "Sticky 'Call Now' button with phone number visible on desktop",
+        "Mobile hamburger menu",
+        "Click-to-call link on phone number",
+        "Gold accent on CTA button"
+      ],
+      "priority": 2,
+      "passes": true,
+      "notes": "Header with sticky CTA, mobile hamburger menu"
+    },
+    {
+      "id": "US-003",
+      "title": "Create hero section with strong CTA",
+      "description": "Build the homepage hero section with headline, subheadline, and prominent call-to-action buttons for calling and getting a quote.",
+      "acceptanceCriteria": [
+        "Large headline: 'Premium Floor Sanding by Trusted Experts'",
+        "Subheadline about quality and care",
+        "Primary CTA: 'Call for Free Quote' with phone number",
+        "Secondary CTA: 'Email Us'",
+        "Background supports future image",
+        "Mobile-responsive with stacked buttons"
+      ],
+      "priority": 3,
+      "passes": true,
+      "notes": "Hero with Call/Email CTAs, trust indicators"
+    },
+    {
+      "id": "US-004",
+      "title": "Create services section",
+      "description": "Build a services section showcasing floor sanding services with icons and descriptions.",
+      "acceptanceCriteria": [
+        "Grid of service cards (Floor Sanding, Restoration, Refinishing, Commercial)",
+        "Each card has icon, title, brief description",
+        "CTA at bottom: 'Call to Discuss Your Project'",
+        "Services content stored in markdown file for easy editing",
+        "Responsive grid (1 col mobile, 2 col tablet, 4 col desktop)"
+      ],
+      "priority": 4,
+      "passes": true,
+      "notes": "4 service cards with icons, CTA"
+    },
+    {
+      "id": "US-005",
+      "title": "Create before/after gallery component",
+      "description": "Build an interactive before/after image comparison gallery that the business owner can easily update.",
+      "acceptanceCriteria": [
+        "Slider component to compare before/after images",
+        "Gallery grid showing multiple projects",
+        "Images loaded from /src/content/gallery/ folder",
+        "Each gallery item has: before image, after image, location, description",
+        "CTA after gallery: 'Want results like this? Call us!'",
+        "Lightbox for full-size viewing"
+      ],
+      "priority": 5,
+      "passes": true,
+      "notes": "Gallery grid with placeholders, ready for real images"
+    },
+    {
+      "id": "US-006",
+      "title": "Create testimonials section",
+      "description": "Build a testimonials carousel/grid displaying customer reviews, editable via markdown files.",
+      "acceptanceCriteria": [
+        "Testimonial cards with quote, customer name, location",
+        "Testimonials stored in /src/content/testimonials/ as markdown",
+        "Include existing testimonials (Gary-Dublin, Emma-Monaghan, Rachel-Meath)",
+        "Star rating display",
+        "CTA: 'Join our happy customers - Call Now'"
+      ],
+      "priority": 6,
+      "passes": true,
+      "notes": "3 testimonials with star ratings"
+    },
+    {
+      "id": "US-007",
+      "title": "Create service areas section with map",
+      "description": "Build a section highlighting service areas with an embedded map and location list.",
+      "acceptanceCriteria": [
+        "List of service areas: Dublin, Monaghan, Cavan, Meath, Louth, Midlands, North Ireland",
+        "Embedded Google Map or static map image",
+        "Text: 'Not sure if we cover your area? Give us a call!'",
+        "CTA with phone number",
+        "Areas stored in config file for easy updates"
+      ],
+      "priority": 7,
+      "passes": true,
+      "notes": "Service areas list with map placeholder"
+    },
+    {
+      "id": "US-008",
+      "title": "Create footer with contact info",
+      "description": "Build a comprehensive footer with contact details, quick links, and social proof.",
+      "acceptanceCriteria": [
+        "Phone number prominently displayed with click-to-call",
+        "Email address with mailto link",
+        "Quick links to all pages",
+        "Service areas list",
+        "Copyright notice",
+        "Business hours if provided"
+      ],
+      "priority": 8,
+      "passes": true,
+      "notes": "Footer with contact, links, areas"
+    },
+    {
+      "id": "US-009",
+      "title": "Create contact page with form",
+      "description": "Build a dedicated contact page with a form and all contact methods prominently displayed.",
+      "acceptanceCriteria": [
+        "Contact form: Name, Email, Phone, Message, Location dropdown",
+        "Form validation with helpful error messages",
+        "Phone number displayed large with click-to-call",
+        "Email displayed with mailto link",
+        "Service areas listed",
+        "Form submits to API endpoint (placeholder for now)"
+      ],
+      "priority": 9,
+      "passes": true,
+      "notes": "Contact page with form and prominent phone/email"
+    },
+    {
+      "id": "US-010",
+      "title": "Set up Resend for contact form emails",
+      "description": "Integrate Resend API to send contact form submissions to the business owner's email.",
+      "acceptanceCriteria": [
+        "Astro API endpoint /api/contact.ts created",
+        "Resend SDK installed and configured",
+        "Environment variable for RESEND_API_KEY",
+        "Email sent to info@bespokefloorsanding.ie on form submit",
+        "Success/error feedback to user",
+        "Rate limiting consideration documented"
+      ],
+      "priority": 10,
+      "passes": true,
+      "notes": "Resend API endpoint at /api/contact"
+    },
+    {
+      "id": "US-011",
+      "title": "Create SEO location page template",
+      "description": "Build a reusable template for location-specific landing pages to improve local SEO.",
+      "acceptanceCriteria": [
+        "Template accepts location name as parameter",
+        "Dynamic H1: 'Floor Sanding in {Location}'",
+        "Location-specific meta title and description",
+        "Schema.org LocalBusiness markup with service area",
+        "Filtered testimonials from that location",
+        "Filtered gallery items from that location",
+        "Strong CTA to call"
+      ],
+      "priority": 11,
+      "passes": true,
+      "notes": "LocationPage layout with schema.org"
+    },
+    {
+      "id": "US-012",
+      "title": "Create location pages for key areas",
+      "description": "Generate location-specific pages for primary service areas using the template.",
+      "acceptanceCriteria": [
+        "/floor-sanding-monaghan page created",
+        "/floor-sanding-cavan page created",
+        "/floor-sanding-dublin page created",
+        "/floor-sanding-meath page created",
+        "/floor-sanding-midlands page created",
+        "Each has unique meta description mentioning the location",
+        "Internal linking between location pages"
+      ],
+      "priority": 12,
+      "passes": true,
+      "notes": "5 location pages created"
+    },
+    {
+      "id": "US-013",
+      "title": "Add Schema.org structured data",
+      "description": "Implement JSON-LD structured data for LocalBusiness and Service schemas.",
+      "acceptanceCriteria": [
+        "LocalBusiness schema on all pages",
+        "Includes: name, phone, email, service areas, priceRange",
+        "Service schema for floor sanding services",
+        "Review/testimonial schema for testimonials",
+        "Validates in Google Rich Results Test"
+      ],
+      "priority": 13,
+      "passes": true,
+      "notes": "LocalBusiness schema with reviews"
+    },
+    {
+      "id": "US-014",
+      "title": "Add sitemap and robots.txt",
+      "description": "Generate XML sitemap and configure robots.txt for SEO.",
+      "acceptanceCriteria": [
+        "@astrojs/sitemap package installed",
+        "Sitemap generated at /sitemap.xml",
+        "All pages included in sitemap",
+        "robots.txt allows all crawlers",
+        "Sitemap URL in robots.txt"
+      ],
+      "priority": 14,
+      "passes": true,
+      "notes": "Sitemap integration + robots.txt"
+    },
+    {
+      "id": "US-015",
+      "title": "Set up Decap CMS for content editing",
+      "description": "Configure Decap CMS so the business owner can edit content through a web interface.",
+      "acceptanceCriteria": [
+        "Decap CMS installed and configured",
+        "/admin route accessible",
+        "Collections defined: testimonials, gallery, services, site settings",
+        "Git Gateway or local backend configured",
+        "Password protection documented",
+        "README with instructions for business owner"
+      ],
+      "priority": 15,
+      "passes": true,
+      "notes": "Decap CMS at /admin"
+    },
+    {
+      "id": "US-016",
+      "title": "Configure Decap CMS collections",
+      "description": "Set up all content collections in Decap CMS with appropriate fields.",
+      "acceptanceCriteria": [
+        "Testimonials: name, location, quote, rating, date",
+        "Gallery: title, location, before_image, after_image, description",
+        "Services: title, description, icon",
+        "Site Settings: phone, email, business_hours, service_areas",
+        "Image upload configured to /public/images/"
+      ],
+      "priority": 16,
+      "passes": true,
+      "notes": "Collections: testimonials, gallery, services, settings"
+    },
+    {
+      "id": "US-017",
+      "title": "Set up Umami analytics",
+      "description": "Integrate Umami analytics for privacy-friendly visitor tracking.",
+      "acceptanceCriteria": [
+        "Umami script tag added to base layout",
+        "Environment variable for UMAMI_WEBSITE_ID",
+        "Environment variable for UMAMI_URL",
+        "Script loads async and doesn't block rendering",
+        "Documentation for self-hosting Umami"
+      ],
+      "priority": 17,
+      "passes": true,
+      "notes": "Umami script loads from env vars"
+    },
+    {
+      "id": "US-018",
+      "title": "Add Umami event tracking for CTAs",
+      "description": "Track clicks on important CTAs using Umami custom events.",
+      "acceptanceCriteria": [
+        "Track 'Call Now' button clicks",
+        "Track 'Email Us' clicks",
+        "Track contact form submissions",
+        "Track gallery views",
+        "Track location page visits",
+        "Events named clearly: 'cta-call', 'cta-email', 'form-submit', 'gallery-view'"
+      ],
+      "priority": 18,
+      "passes": true,
+      "notes": "Tracks cta-call, cta-email, form-submit, gallery-view"
+    },
+    {
+      "id": "US-019",
+      "title": "Add floating mobile call button",
+      "description": "Add a sticky floating call button on mobile devices for easy access.",
+      "acceptanceCriteria": [
+        "Circular button fixed to bottom-right on mobile",
+        "Phone icon clearly visible",
+        "Click triggers tel: link",
+        "Only visible on screens < 768px",
+        "Doesn't overlap important content",
+        "Gold/accent color to match brand"
+      ],
+      "priority": 19,
+      "passes": true,
+      "notes": "Floating call button on mobile"
+    },
+    {
+      "id": "US-020",
+      "title": "Optimize for performance and Core Web Vitals",
+      "description": "Ensure the site scores 90+ on Lighthouse and passes Core Web Vitals.",
+      "acceptanceCriteria": [
+        "Images use Astro Image component with lazy loading",
+        "Fonts preloaded or use system fonts",
+        "CSS purged of unused styles",
+        "Lighthouse score 90+ on Performance, Accessibility, SEO",
+        "No layout shift issues"
+      ],
+      "priority": 20,
+      "passes": true,
+      "notes": "Astro handles image optimization, CSS purging"
+    },
+    {
+      "id": "US-021",
+      "title": "Create services page",
+      "description": "Build a dedicated services page with detailed information about each service offered.",
+      "acceptanceCriteria": [
+        "List all services with detailed descriptions",
+        "Each service has its own section with benefits",
+        "CTA after each service: 'Get a Quote for {Service}'",
+        "Services content from markdown for easy editing",
+        "Internal links to contact page"
+      ],
+      "priority": 21,
+      "passes": true,
+      "notes": "Dedicated services page"
+    },
+    {
+      "id": "US-022",
+      "title": "Add meta tags and Open Graph",
+      "description": "Implement comprehensive meta tags and Open Graph data for social sharing.",
+      "acceptanceCriteria": [
+        "Title and description meta tags on all pages",
+        "Open Graph tags: title, description, image, url",
+        "Twitter card meta tags",
+        "Canonical URLs set",
+        "Default OG image created/configured"
+      ],
+      "priority": 22,
+      "passes": true,
+      "notes": "OG, Twitter, canonical tags"
+    },
+    {
+      "id": "US-023",
+      "title": "Create documentation for business owner",
+      "description": "Write clear documentation explaining how to update content, view analytics, and maintain the site.",
+      "acceptanceCriteria": [
+        "README.md with project overview",
+        "OWNER-GUIDE.md with step-by-step instructions",
+        "How to add/edit testimonials",
+        "How to add gallery images",
+        "How to access analytics dashboard",
+        "How to update contact info",
+        "Screenshots where helpful"
+      ],
+      "priority": 23,
+      "passes": true,
+      "notes": "OWNER-GUIDE.md created"
+    },
+    {
+      "id": "US-024",
+      "title": "Create developer documentation",
+      "description": "Write documentation for future developers explaining the architecture and how to make changes.",
+      "acceptanceCriteria": [
+        "CONTRIBUTING.md with setup instructions",
+        "Architecture overview in docs/",
+        "Environment variables documented",
+        "Deployment instructions",
+        "CMS configuration explained",
+        "Analytics setup explained"
+      ],
+      "priority": 24,
+      "passes": true,
+      "notes": "docs/DEVELOPER.md created"
+    },
+    {
+      "id": "US-025",
+      "title": "Create Monaghan microsite",
+      "description": "Build a satellite site at floorsandingmonaghan.ie targeting Monaghan and surrounding areas for local SEO.",
+      "acceptanceCriteria": [
+        "Standalone Astro site at floorsandingmonaghan.ie",
+        "Targets Monaghan, Clones, Castleblayney, Carrickmacross areas",
+        "Links back to main site",
+        "FAQ section with Schema.org FAQPage markup",
+        "Custom 404 page",
+        "Gallery section with local project images",
+        "Dockerized for deployment"
+      ],
+      "priority": 25,
+      "passes": true,
+      "notes": "Microsite complete at /home/dillon/projects/monaghan-floor-sanding"
+    },
+    {
+      "id": "US-026",
+      "title": "Create Cavan microsite",
+      "description": "Build a satellite site at floorsandingcavan.ie targeting Cavan and surrounding areas for local SEO.",
+      "acceptanceCriteria": [
+        "Standalone Astro site at floorsandingcavan.ie",
+        "Targets Cavan, Virginia, Bailieborough, Kingscourt areas",
+        "Links back to main site",
+        "FAQ section with Schema.org FAQPage markup",
+        "Custom 404 page",
+        "Gallery section with local project images",
+        "Dockerized for deployment"
+      ],
+      "priority": 26,
+      "passes": true,
+      "notes": "Microsite complete at /home/dillon/projects/cavan-floor-sanding"
+    },
+    {
+      "id": "US-027",
+      "title": "Add FAQ sections with schema markup",
+      "description": "Add FAQ sections to all three sites with Schema.org FAQPage structured data.",
+      "acceptanceCriteria": [
+        "FAQ component created",
+        "Added to main site homepage",
+        "Added to both microsites",
+        "Schema.org FAQPage JSON-LD on each page",
+        "Common floor sanding questions covered"
+      ],
+      "priority": 27,
+      "passes": true,
+      "notes": "FAQ.astro component created"
+    },
+    {
+      "id": "US-028",
+      "title": "Add custom 404 pages",
+      "description": "Create custom 404 error pages for all three sites.",
+      "acceptanceCriteria": [
+        "404 page matches site design",
+        "Clear messaging and navigation back to home",
+        "Added to main site and both microsites"
+      ],
+      "priority": 28,
+      "passes": true,
+      "notes": "404.astro created for all sites"
+    },
+    {
+      "id": "US-029",
+      "title": "Domain migration to bespokefloorsanding.ie",
+      "description": "Migrate the main site from bespoke.dillonmccaffrey.dev to bespokefloorsanding.ie.",
+      "acceptanceCriteria": [
+        "astro.config.mjs updated with new domain",
+        "nginx.conf updated with new server_name",
+        "SSL certificates issued for new domain",
+        "All documentation updated"
+      ],
+      "priority": 29,
+      "passes": true,
+      "notes": "Domain migrated successfully"
+    },
+    {
+      "id": "US-030",
+      "title": "Add theme toggle (light/dark mode)",
+      "description": "Implement a light/dark mode toggle for the main site.",
+      "acceptanceCriteria": [
+        "Toggle switch in header",
+        "Persists preference in localStorage",
+        "Works on mobile and after navigation",
+        "Proper contrast in both modes"
+      ],
+      "priority": 30,
+      "passes": true,
+      "notes": "Theme toggle with sliding switch"
+    },
+    {
+      "id": "US-031",
+      "title": "Generate and add real images",
+      "description": "Add high-quality images for hero, gallery, and services sections.",
+      "acceptanceCriteria": [
+        "Hero banner image",
+        "Gallery project images (before/after)",
+        "Service category images",
+        "Images optimized for web"
+      ],
+      "priority": 31,
+      "passes": false,
+      "notes": "Images generated but not committed"
+    },
+    {
+      "id": "US-032",
+      "title": "Deploy all sites to VPS",
+      "description": "Deploy main site and both microsites to the production VPS.",
+      "acceptanceCriteria": [
+        "Main site live at bespokefloorsanding.ie",
+        "Monaghan site live at floorsandingmonaghan.ie",
+        "Cavan site live at floorsandingcavan.ie",
+        "SSL working on all sites",
+        "Contact form sending emails"
+      ],
+      "priority": 32,
+      "passes": false,
+      "notes": "Pending deployment"
+    },
+    {
+      "id": "US-033",
+      "title": "Set up Google Business Profile",
+      "description": "Create and verify Google Business Profile for local search visibility.",
+      "acceptanceCriteria": [
+        "Business profile created",
+        "Profile verified",
+        "All three sites linked",
+        "Service areas defined"
+      ],
+      "priority": 33,
+      "passes": false,
+      "notes": "Manual task - not started"
+    },
+    {
+      "id": "US-034",
+      "title": "Set up Google Search Console",
+      "description": "Add all three sites to Google Search Console and submit sitemaps.",
+      "acceptanceCriteria": [
+        "All three domains verified",
+        "Sitemaps submitted",
+        "Initial indexing requested"
+      ],
+      "priority": 34,
+      "passes": false,
+      "notes": "Manual task - not started"
+    },
+    {
+      "id": "US-035",
+      "title": "Set up Umami analytics",
+      "description": "Configure Umami analytics for all three sites.",
+      "acceptanceCriteria": [
+        "Umami instance running",
+        "All three sites added",
+        "Environment variables configured",
+        "CTA tracking verified"
+      ],
+      "priority": 35,
+      "passes": false,
+      "notes": "Script in place, needs configuration"
+    },
+    {
+      "id": "US-036",
+      "title": "Add real before/after photos from Nygell",
+      "description": "Replace placeholder/generated images with real photos from Nygell's completed projects.",
+      "acceptanceCriteria": [
+        "Real before/after project photos obtained",
+        "Added to gallery with proper metadata",
+        "Attributed to correct locations"
+      ],
+      "priority": 36,
+      "passes": false,
+      "notes": "Waiting on photos from Nygell"
+    }
+  ]
+}

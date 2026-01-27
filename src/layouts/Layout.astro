@@ -1,0 +1,71 @@
+---
+import '../styles/global.css'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import SchemaOrg from '../components/SchemaOrg.astro'
+import Analytics from '../components/Analytics.astro'
+import Clarity from '../components/Clarity.astro'
+
+import FloatingCallButton from '../components/FloatingCallButton.astro'
+
+const clarityProjectId = import.meta.env.CLARITY_PROJECT_ID || '';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "Premium floor sanding services in Dublin, Monaghan, Cavan, and Midlands Ireland. Call Bespoke Floor Sanding Co. for a free quote: +353 87 402 7101" 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | Bespoke Floor Sanding Co.</title>
+    
+    <!-- Theme initialization (prevents flash) -->
+    <script is:inline>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        const system = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        const theme = stored || system;
+        document.documentElement.classList.remove('light', 'dark');
+        document.documentElement.classList.add(theme);
+      })();
+    </script>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${title} | Bespoke Floor Sanding Co.`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:site_name" content="Bespoke Floor Sanding Co." />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | Bespoke Floor Sanding Co.`} />
+    <meta name="twitter:description" content={description} />
+    
+    <!-- Canonical -->
+    <link rel="canonical" href={Astro.url.href} />
+    <SchemaOrg />
+    <Analytics />
+    <Clarity projectId={clarityProjectId} />
+  </head>
+  <body class="bg-background text-text min-h-screen antialiased transition-colors duration-300">
+    <Header />
+    <main class="pt-16 md:pt-20">
+      <slot />
+    </main>
+    <Footer />
+    <FloatingCallButton />
+  </body>
+</html>

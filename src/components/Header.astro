@@ -1,0 +1,129 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { getGeneralSettings, formatPhoneHref } from '../lib/content';
+
+const settings = getGeneralSettings();
+const phone = settings.phone;
+const phoneHref = formatPhoneHref(phone);
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-background-lighter">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <!-- Logo with dark background for light mode visibility -->
+      <a href="/" class="flex items-center">
+        <span class="bg-[#1A1A1A] inline-flex">
+          <img src="/images/bespoke-floor-sanding-logo.png" alt="Bespoke Floor Sanding" class="h-10 sm:h-12 w-auto" />
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-text-muted hover:text-text transition-colors font-medium"
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Desktop Right Side -->
+      <div class="hidden md:flex items-center gap-4">
+        <ThemeToggle />
+        <a
+          href="/contact"
+          class="call-button flex items-center gap-2 bg-cta hover:bg-cta-hover text-background font-semibold px-5 py-2.5 rounded-lg transition-colors"
+          data-phone={phoneHref}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+          </svg>
+          <span>{phone}</span>
+        </a>
+      </div>
+
+      <!-- Mobile Right Side -->
+      <div class="flex md:hidden items-center gap-2">
+        <ThemeToggle />
+        <button
+          id="mobile-menu-button"
+          class="p-2 text-text-muted hover:text-text transition-colors"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-background-light border-t border-background-lighter">
+    <nav class="flex flex-col px-4 py-4 gap-3">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-text-muted hover:text-text transition-colors font-medium py-2"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="tel:+353874027101"
+        class="flex items-center justify-center gap-2 bg-cta hover:bg-cta-hover text-background font-semibold px-4 py-3 rounded-lg transition-colors mt-2 w-full"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+        </svg>
+        <span class="whitespace-nowrap">Call Now</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  menuButton?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.toggle('hidden');
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+    menuButton?.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  });
+
+  // Handle call buttons - mobile calls, desktop goes to contact
+  function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+      || window.innerWidth < 768;
+  }
+
+  document.querySelectorAll('.call-button').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      if (isMobile()) {
+        e.preventDefault();
+        const phoneNumber = btn.getAttribute('data-phone');
+        if (phoneNumber) {
+          window.location.href = phoneNumber;
+        }
+      }
+      // On desktop, let the default href="/contact" work
+    });
+  });
+</script>

@@ -1,0 +1,69 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "4321:4321"
+    environment:
+      - NODE_ENV=production
+      - RESEND_API_KEY=${RESEND_API_KEY}
+      - UMAMI_WEBSITE_ID=${UMAMI_WEBSITE_ID}
+      - UMAMI_URL=${UMAMI_URL}
+      - CONTENT_DIR=/data/content
+    volumes:
+      - ./data/content:/data/content
+      - ./data/images:/data/images
+      - ./data/images:/app/dist/client/images
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:4321"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  cms-api:
+    build: ./cms-proxy
+    restart: unless-stopped
+    ports:
+      - "3002:3002"
+    environment:
+      - CMS_PASSWORD=${CMS_PASSWORD}
+      - CONTENT_DIR=/data/content
+      - MEDIA_DIR=/data/images
+      - REBUILD_WEBHOOK=http://web:4321/api/rebuild
+    volumes:
+      - ./data/content:/data/content
+      - ./data/images:/data/images
+    depends_on:
+      - web
+
+  # Umami analytics (self-hosted)
+  umami:
+    image: ghcr.io/umami-software/umami:postgresql-latest
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://umami:umami@db:5432/umami
+      DATABASE_TYPE: postgresql
+      APP_SECRET: ${UMAMI_APP_SECRET:-replace-me-with-random-string}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: umami
+      POSTGRES_USER: umami
+      POSTGRES_PASSWORD: umami
+    volumes:
+      - umami-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U umami"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  umami-db:
