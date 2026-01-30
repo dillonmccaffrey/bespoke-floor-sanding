@@ -23,7 +23,7 @@ const services = getServices();
           <!-- Image -->
           {service.image && (
             <div class="aspect-[4/3] overflow-hidden">
-              <img src={service.image} alt={service.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <img src={service.image} alt={service.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
             </div>
           )}
           

@@ -7,6 +7,7 @@ import Analytics from '../components/Analytics.astro'
 import Clarity from '../components/Clarity.astro'
 
 import FloatingCallButton from '../components/FloatingCallButton.astro'
+import CookieConsent from '../components/CookieConsent.astro'
 
 const clarityProjectId = import.meta.env.CLARITY_PROJECT_ID || '';
 
@@ -28,6 +29,8 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} | Bespoke Floor Sanding Co.</title>
     
@@ -48,11 +51,15 @@ const {
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:site_name" content="Bespoke Floor Sanding Co." />
-    
+    <meta property="og:image" content="https://bespokefloorsanding.ie/images/before-after-comparison.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={`${title} | Bespoke Floor Sanding Co.`} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://bespokefloorsanding.ie/images/before-after-comparison.jpg" />
     
     <!-- Canonical -->
     <link rel="canonical" href={Astro.url.href} />
@@ -67,5 +74,25 @@ const {
     </main>
     <Footer />
     <FloatingCallButton />
+    <CookieConsent />
+
+    <script>
+      // Global handler: Desktop phone links go to /contact, mobile makes call
+      function isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+          || window.innerWidth < 768;
+      }
+
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const link = target.closest('a[href^="tel:"]') as HTMLAnchorElement;
+
+        if (link && !isMobileDevice()) {
+          e.preventDefault();
+          window.location.href = '/contact';
+        }
+        // On mobile, let tel: links work naturally
+      });
+    </script>
   </body>
 </html>

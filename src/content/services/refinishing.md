@@ -2,7 +2,7 @@
 title: Refinishing
 description: Premium finishes to protect and enhance your wooden floors.
 icon: finish
-image: /images/service-refinishing.png
+image: /images/service-refinishing.webp
 order: 3
 ---
 

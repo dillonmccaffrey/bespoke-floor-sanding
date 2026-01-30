@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import ThemeToggle from './ThemeToggle.astro';
 import { getGeneralSettings, formatPhoneHref } from '../lib/content';
+import logo from '../assets/images/bespoke-floor-sanding-logo.webp';
 
 const settings = getGeneralSettings();
 const phone = settings.phone;
@@ -10,6 +12,7 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
   { href: '/gallery', label: 'Gallery' },
+  { href: '/locations', label: 'Locations' },
   { href: '/contact', label: 'Contact' },
 ];
 ---
@@ -20,7 +23,7 @@ const navLinks = [
       <!-- Logo with dark background for light mode visibility -->
       <a href="/" class="flex items-center">
         <span class="bg-[#1A1A1A] inline-flex">
-          <img src="/images/bespoke-floor-sanding-logo.png" alt="Bespoke Floor Sanding" class="h-10 sm:h-12 w-auto" />
+          <Image src={logo} alt="Bespoke Floor Sanding" class="h-10 sm:h-12 w-auto" />
         </span>
       </a>
 

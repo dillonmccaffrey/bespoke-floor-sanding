@@ -2,7 +2,7 @@
 title: Floor Sanding
 description: Expert floor sanding to restore your hardwood floors to their original beauty.
 icon: sanding
-image: /images/service-floor-sanding.png
+image: /images/service-floor-sanding.webp
 order: 1
 ---
 

@@ -2,7 +2,7 @@
 title: Floor Restoration
 description: Complete restoration for damaged or neglected wooden floors.
 icon: restoration
-image: /images/service-restoration.png
+image: /images/service-restoration.webp
 order: 2
 ---
 

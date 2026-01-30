@@ -18,6 +18,7 @@ interface GalleryItem {
   description?: string;
   beforeImage: string;
   afterImage: string;
+  category?: string;
   order?: number;
 }
 
@@ -100,8 +101,8 @@ export function getGallery(): GalleryItem[] {
   // Return defaults if no CMS content
   if (items.length === 0) {
     return [
-      { title: 'Victorian Hallway Restoration', location: 'Dublin', description: 'Complete restoration of original Victorian pine flooring', beforeImage: '/images/placeholder-before.jpg', afterImage: '/images/placeholder-after.jpg' },
-      { title: 'Modern Oak Living Room', location: 'Meath', description: 'Sanding and finishing of solid oak flooring', beforeImage: '/images/placeholder-before.jpg', afterImage: '/images/placeholder-after.jpg' },
+      { title: 'Victorian Hallway Restoration', location: 'Dublin', description: 'Complete restoration of original Victorian pine flooring', beforeImage: '/images/sanded-floor-photo-1-before.webp', afterImage: '/images/sanded-floor-photo-1-after.webp' },
+      { title: 'Modern Oak Living Room', location: 'Meath', description: 'Sanding and finishing of solid oak flooring', beforeImage: '/images/sanded-floor-photo-2-before.webp', afterImage: '/images/sanded-floor-photo-2-after.webp' },
     ];
   }
   
@@ -164,7 +165,7 @@ export function getGeneralSettings(): GeneralSettings {
   return readSettingsFile<GeneralSettings>('general.json', {
     businessName: 'Bespoke Floor Sanding Co.',
     phone: '+353 87 402 7101',
-    email: 'info@bespokefloorsanding.ie',
+    email: 'contact@bespokefloorsanding.ie',
     tagline: 'Premium Floor Sanding by Trusted Experts'
   });
 }

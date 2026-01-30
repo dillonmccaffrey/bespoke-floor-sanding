@@ -1,8 +1,371 @@
 ---
-import LocationPage from '../layouts/LocationPage.astro';
+import Layout from '../layouts/Layout.astro';
+
+const phone = '+353 87 402 7101';
+const phoneHref = 'tel:+353874027101';
+
+const towns = [
+  { name: 'Monaghan Town', description: 'County capital with Georgian architecture and period floors' },
+  { name: 'Carrickmacross', description: 'Historic market town with beautiful heritage homes' },
+  { name: 'Castleblayney', description: 'Lakeside town near Lough Muckno' },
+  { name: 'Clones', description: 'Border town with stunning Victorian properties' },
+  { name: 'Ballybay', description: 'Rural market town in central Monaghan' },
+  { name: 'Scotstown', description: 'Our home base - quick response times' },
+  { name: 'Emyvale', description: 'North Monaghan and border areas' },
+  { name: 'Glaslough', description: 'Estate village near Castle Leslie' },
+];
+
+const faqs = [
+  {
+    question: "How much does floor sanding cost in Monaghan?",
+    answer: "Floor sanding prices in County Monaghan typically range from €25-€40 per square metre, depending on floor condition and finish type. We offer free, no-obligation quotes for all Monaghan properties. Call 087 402 7101 for a competitive local rate."
+  },
+  {
+    question: "How long does floor sanding take in a typical Monaghan home?",
+    answer: "Most residential floor sanding projects in Monaghan take 2-3 days. A single room can often be completed in one day, while a full house may take 3-5 days. We'll give you an accurate timeline during your free consultation."
+  },
+  {
+    question: "Do you cover all of County Monaghan?",
+    answer: "Yes, we cover every town and townland in County Monaghan. Based in Scotstown, we're centrally located to reach Carrickmacross, Castleblayney, Clones, Ballybay, Monaghan Town, Emyvale, and Glaslough quickly. We also cover border areas into Armagh and Fermanagh."
+  },
+  {
+    question: "Is floor sanding messy?",
+    answer: "We use modern dust-free sanding equipment that captures 99% of dust. Your Monaghan home stays clean throughout the process. We also protect all furniture, fixtures, and adjoining rooms."
+  },
+  {
+    question: "Can you sand parquet floors in older Monaghan houses?",
+    answer: "Absolutely. Many period homes in Monaghan feature original parquet or herringbone floors. We specialise in restoring these beautiful heritage floors while preserving their character. We've restored floors in Georgian townhouses, Victorian villas, and traditional farmhouses across the county."
+  },
+  {
+    question: "Do you offer commercial floor sanding in Monaghan?",
+    answer: "Yes, we work with pubs, restaurants, hotels, offices, and shops throughout County Monaghan. We can schedule work outside business hours to minimise disruption. We've completed projects in Carrickmacross and Castleblayney town centres."
+  }
+];
 ---
 
-<LocationPage 
-  location="Monaghan" 
-  description="Floor sanding Monaghan – Carrickmacross, Castleblayney, Clones & county-wide. Expert hardwood restoration. Get your free quote: +353 87 402 7101."
-/>
+<Layout 
+  title="Floor Sanding Monaghan | Professional Wood Floor Restoration County Monaghan"
+  description="Expert floor sanding in Monaghan. Dust-free sanding, restoration & refinishing in Carrickmacross, Castleblayney, Clones, Ballybay & Scotstown. Free quotes. Call 087 402 7101."
+>
+  <!-- Hero Section -->
+  <section class="relative py-24 bg-gradient-to-b from-background to-background-light overflow-hidden">
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: url('/images/hero-background.webp'); background-size: cover; background-position: center;"></div>
+    </div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-1.5 mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+        </svg>
+        <span class="text-sm text-primary">County Monaghan</span>
+      </div>
+      
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-text mb-6">
+        Floor Sanding <span class="text-primary">Monaghan</span>
+      </h1>
+      
+      <p class="text-lg md:text-xl text-text-muted max-w-3xl mx-auto mb-8">
+        Professional <strong>floor sanding in Monaghan</strong> from local experts. We provide dust-free wood floor restoration, sanding, and refinishing services throughout County Monaghan. Based in Scotstown, we're your trusted <strong>Monaghan floor sanding</strong> specialists.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href={phoneHref}
+          class="inline-flex items-center gap-2 bg-cta hover:bg-cta-hover text-background font-semibold px-8 py-4 rounded-lg text-lg transition-all hover:scale-105 shadow-lg"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+          </svg>
+          <span>Call for Free Quote</span>
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-background font-semibold px-8 py-4 rounded-lg transition-all"
+        >
+          Contact Us
+        </a>
+      </div>
+      
+      <p class="mt-6 text-text-muted">
+        <span class="font-semibold text-primary">{phone}</span> · Free quotes · No obligation
+      </p>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-16 bg-background">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-bold text-text mb-4 text-center">
+        Why Choose Us for <span class="text-primary">Floor Sanding in Monaghan</span>?
+      </h2>
+      <p class="text-text-muted text-center max-w-2xl mx-auto mb-12">
+        We're not just another floor sanding company – we're your neighbours. Based in Scotstown, we understand Monaghan homes and the unique character of floors in our county.
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-background-light p-6 rounded-xl border border-background-lighter text-center">
+          <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-text text-xl mb-2">Locally Based</h3>
+          <p class="text-text-muted">Based in Scotstown, we're never far away. Quick response times and competitive local rates for all of County Monaghan.</p>
+        </div>
+        
+        <div class="bg-background-light p-6 rounded-xl border border-background-lighter text-center">
+          <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-text text-xl mb-2">Dust-Free Sanding</h3>
+          <p class="text-text-muted">Modern equipment captures 99% of dust. Your Monaghan home stays clean while we work our magic on your floors.</p>
+        </div>
+        
+        <div class="bg-background-light p-6 rounded-xl border border-background-lighter text-center">
+          <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-text text-xl mb-2">Fair Local Pricing</h3>
+          <p class="text-text-muted">No Dublin prices here. We offer honest, competitive rates for Monaghan homeowners and businesses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-16 bg-background-light">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-bold text-text mb-4 text-center">
+        Our <span class="text-primary">Monaghan Floor Sanding</span> Services
+      </h2>
+      <p class="text-text-muted text-center max-w-2xl mx-auto mb-12">
+        Complete wood floor care for homes and businesses throughout County Monaghan
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-background p-8 rounded-xl border border-background-lighter">
+          <h3 class="font-semibold text-primary text-xl mb-3">Floor Sanding</h3>
+          <p class="text-text-muted mb-4">
+            Professional floor sanding that removes years of wear, scratches, and old finishes. We use state-of-the-art dust-free equipment to sand your Monaghan floors to perfection, revealing the natural beauty of the wood beneath.
+          </p>
+          <ul class="text-text-muted space-y-2">
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Hardwood floor sanding</li>
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Softwood (pine) floor sanding</li>
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Parquet floor sanding</li>
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Herringbone floor sanding</li>
+          </ul>
+        </div>
+        
+        <div class="bg-background p-8 rounded-xl border border-background-lighter">
+          <h3 class="font-semibold text-primary text-xl mb-3">Floor Restoration</h3>
+          <p class="text-text-muted mb-4">
+            Breathe new life into damaged or neglected wooden floors. Many older Monaghan homes have beautiful original floors hidden under carpet or decades of wear. We specialise in bringing these heritage floors back to life.
+          </p>
+          <ul class="text-text-muted space-y-2">
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Gap filling and board repair</li>
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Stain and damage removal</li>
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Period floor restoration</li>
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Farmhouse floor restoration</li>
+          </ul>
+        </div>
+        
+        <div class="bg-background p-8 rounded-xl border border-background-lighter">
+          <h3 class="font-semibold text-primary text-xl mb-3">Refinishing & Staining</h3>
+          <p class="text-text-muted mb-4">
+            Choose from natural finishes to custom colours. We apply premium oils, lacquers, and stains with precision to protect your floors and match your interior design preferences.
+          </p>
+          <ul class="text-text-muted space-y-2">
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Oil finishes (Osmo, Rubio)</li>
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Lacquer finishes (matte to gloss)</li>
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Custom staining</li>
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Whitewashing and liming</li>
+          </ul>
+        </div>
+        
+        <div class="bg-background p-8 rounded-xl border border-background-lighter">
+          <h3 class="font-semibold text-primary text-xl mb-3">Commercial Floor Sanding</h3>
+          <p class="text-text-muted mb-4">
+            Professional floor sanding for Monaghan businesses. We work with pubs, restaurants, hotels, offices, and retail spaces. Flexible scheduling to minimise disruption to your business.
+          </p>
+          <ul class="text-text-muted space-y-2">
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Pub and restaurant floors</li>
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Hotel and B&B floors</li>
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Office floor restoration</li>
+            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Out-of-hours work available</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Areas We Cover -->
+  <section class="py-16 bg-background">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-bold text-text mb-4 text-center">
+        Floor Sanding Across <span class="text-primary">County Monaghan</span>
+      </h2>
+      <p class="text-text-muted text-center max-w-2xl mx-auto mb-12">
+        We cover every corner of County Monaghan. From Carrickmacross in the south to Clones in the west, we're your local floor sanding experts.
+      </p>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {towns.map((town) => (
+          <div class="bg-background-light p-5 rounded-xl border border-background-lighter">
+            <h3 class="font-semibold text-primary mb-2">{town.name}</h3>
+            <p class="text-text-muted text-sm">{town.description}</p>
+          </div>
+        ))}
+      </div>
+      
+      <p class="text-text-muted text-center mt-8">
+        Don't see your area? We cover <strong>all townlands in County Monaghan</strong> plus border areas in Armagh, Fermanagh, Tyrone, Cavan, and Louth.
+      </p>
+    </div>
+  </section>
+
+  <!-- Microsite Link -->
+  <section class="py-12 bg-primary/10 border-y border-primary/20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-text mb-4">
+        Want even more details about our Monaghan services?
+      </p>
+      <a
+        href="https://floorsandingmonaghan.ie"
+        class="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold text-lg transition-colors"
+        target="_blank"
+        rel="noopener"
+      >
+        Visit floorsandingmonaghan.ie
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-background-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-bold text-text mb-4 text-center">
+        <span class="text-primary">Monaghan Floor Sanding</span> FAQs
+      </h2>
+      <p class="text-text-muted text-center max-w-2xl mx-auto mb-12">
+        Common questions about floor sanding in County Monaghan
+      </p>
+      
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="bg-background rounded-xl border border-background-lighter p-6 group">
+            <summary class="cursor-pointer text-lg font-semibold text-text flex items-center justify-between">
+              {faq.question}
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </summary>
+            <p class="mt-4 text-text-muted leading-relaxed">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-primary">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-background mb-4">
+        Ready to Transform Your Monaghan Floors?
+      </h2>
+      <p class="text-background/80 text-lg mb-8">
+        Get a free, no-obligation quote for your floor sanding project. We're based in Scotstown and cover all of County Monaghan.
+      </p>
+      <a
+        href={phoneHref}
+        class="inline-flex items-center gap-2 bg-background hover:bg-background/90 text-primary font-semibold px-8 py-4 rounded-lg text-lg transition-all hover:scale-105 shadow-lg"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+        </svg>
+        <span>Call {phone}</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://bespokefloorsanding.ie/floor-sanding-monaghan#business",
+    "name": "Bespoke Floor Sanding Co. - Monaghan",
+    "description": "Professional floor sanding and wood floor restoration services in County Monaghan. Based in Scotstown, covering Carrickmacross, Castleblayney, Clones, Ballybay, and all of Monaghan.",
+    "url": "https://bespokefloorsanding.ie/floor-sanding-monaghan",
+    "telephone": "+353874027101",
+    "email": "contact@bespokefloorsanding.ie",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Derryledigan",
+      "addressLocality": "Scotstown",
+      "addressRegion": "Monaghan",
+      "postalCode": "H18 NN22",
+      "addressCountry": "IE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "54.2697",
+      "longitude": "-6.9156"
+    },
+    "areaServed": [
+      {"@type": "Place", "name": "Monaghan"},
+      {"@type": "Place", "name": "Carrickmacross"},
+      {"@type": "Place", "name": "Castleblayney"},
+      {"@type": "Place", "name": "Clones"},
+      {"@type": "Place", "name": "Ballybay"},
+      {"@type": "Place", "name": "Scotstown"},
+      {"@type": "Place", "name": "Emyvale"},
+      {"@type": "Place", "name": "Glaslough"}
+    ],
+    "priceRange": "$$",
+    "openingHours": "Mo-Fr 08:00-18:00, Sa 09:00-14:00",
+    "sameAs": ["https://floorsandingmonaghan.ie"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Floor Sanding Services in Monaghan",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Floor Sanding Monaghan",
+            "description": "Professional floor sanding services throughout County Monaghan"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Floor Restoration Monaghan",
+            "description": "Complete wood floor restoration for Monaghan homes and businesses"
+          }
+        }
+      ]
+    }
+  })} />
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  })} />
+</Layout>

@@ -25,11 +25,11 @@ const projects = getGallery();
             {project.beforeImage && project.afterImage ? (
               <div class="absolute inset-0 flex">
                 <div class="w-1/2 relative overflow-hidden">
-                  <img src={project.beforeImage} alt="Before" class="absolute inset-0 w-full h-full object-cover" />
+                  <img src={project.beforeImage} alt="Before" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
                   <span class="absolute bottom-2 left-2 bg-background/80 text-text text-xs px-2 py-1 rounded">Before</span>
                 </div>
                 <div class="w-1/2 relative overflow-hidden border-l-2 border-primary">
-                  <img src={project.afterImage} alt="After" class="absolute inset-0 w-full h-full object-cover" />
+                  <img src={project.afterImage} alt="After" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
                   <span class="absolute bottom-2 right-2 bg-primary text-background text-xs px-2 py-1 rounded">After</span>
                 </div>
               </div>

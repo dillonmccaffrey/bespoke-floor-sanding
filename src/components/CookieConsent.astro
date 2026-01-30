@@ -1,0 +1,125 @@
+---
+// Cookie Consent Banner - GDPR Compliant
+// Stores consent in localStorage and only loads analytics after consent
+---
+
+<div
+  id="cookie-consent"
+  class="fixed bottom-0 left-0 right-0 z-50 transform translate-y-full transition-transform duration-300 ease-out"
+  role="dialog"
+  aria-labelledby="cookie-consent-title"
+  aria-describedby="cookie-consent-description"
+>
+  <div class="bg-background-light border-t border-background-lighter shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex-1">
+          <h2 id="cookie-consent-title" class="text-text font-semibold text-sm mb-1">
+            Cookie Consent
+          </h2>
+          <p id="cookie-consent-description" class="text-text-muted text-sm">
+            We use cookies to analyse website traffic and improve your experience. By clicking "Accept", you consent to our use of analytics cookies.
+            <a href="/privacy-policy" class="text-primary hover:text-primary-light underline ml-1">
+              Privacy Policy
+            </a>
+          </p>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <button
+            id="cookie-reject"
+            class="px-4 py-2 text-sm font-medium text-text-muted hover:text-text border border-background-lighter rounded-lg transition-colors"
+          >
+            Reject
+          </button>
+          <button
+            id="cookie-accept"
+            class="px-4 py-2 text-sm font-medium bg-cta hover:bg-cta-hover text-background rounded-lg transition-colors"
+          >
+            Accept
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Cookie consent management
+  const CONSENT_KEY = 'cookie-consent';
+  const CONSENT_ACCEPTED = 'accepted';
+  const CONSENT_REJECTED = 'rejected';
+
+  function getConsent(): string | null {
+    return localStorage.getItem(CONSENT_KEY);
+  }
+
+  function setConsent(value: string): void {
+    localStorage.setItem(CONSENT_KEY, value);
+  }
+
+  function showBanner(): void {
+    const banner = document.getElementById('cookie-consent');
+    if (banner) {
+      // Small delay to ensure CSS transition works
+      requestAnimationFrame(() => {
+        banner.classList.remove('translate-y-full');
+        banner.classList.add('translate-y-0');
+      });
+    }
+  }
+
+  function hideBanner(): void {
+    const banner = document.getElementById('cookie-consent');
+    if (banner) {
+      banner.classList.remove('translate-y-0');
+      banner.classList.add('translate-y-full');
+    }
+  }
+
+  function enableAnalytics(): void {
+    // Dispatch custom event that Analytics component can listen for
+    window.dispatchEvent(new CustomEvent('cookie-consent-granted'));
+  }
+
+  function disableAnalytics(): void {
+    // Dispatch custom event for analytics opt-out
+    window.dispatchEvent(new CustomEvent('cookie-consent-rejected'));
+  }
+
+  function init(): void {
+    const consent = getConsent();
+
+    if (consent === CONSENT_ACCEPTED) {
+      enableAnalytics();
+      return;
+    }
+
+    if (consent === CONSENT_REJECTED) {
+      disableAnalytics();
+      return;
+    }
+
+    // No consent recorded yet - show banner
+    showBanner();
+  }
+
+  // Set up event listeners
+  document.addEventListener('DOMContentLoaded', () => {
+    const acceptBtn = document.getElementById('cookie-accept');
+    const rejectBtn = document.getElementById('cookie-reject');
+
+    acceptBtn?.addEventListener('click', () => {
+      setConsent(CONSENT_ACCEPTED);
+      hideBanner();
+      enableAnalytics();
+    });
+
+    rejectBtn?.addEventListener('click', () => {
+      setConsent(CONSENT_REJECTED);
+      hideBanner();
+      disableAnalytics();
+    });
+
+    init();
+  });
+</script>

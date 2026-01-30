@@ -2,8 +2,9 @@
 title: Dining Room Transformation
 location: Meath
 description: Oak floor restoration with premium finish
-beforeImage: /images/sanded-floor-photo-3-before.png
-afterImage: /images/sanded-floor-photo-3-after.png
+beforeImage: /images/sanded-floor-photo-3-before.webp
+afterImage: /images/sanded-floor-photo-3-after.webp
+category: residential
 order: 3
 ---
 
